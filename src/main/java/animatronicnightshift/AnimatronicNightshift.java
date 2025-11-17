@@ -1,6 +1,10 @@
 package animatronicnightshift;
 
 import com.mojang.logging.LogUtils;
+
+import animatronicnightshift.entities.EntitiesRegister;
+import animatronicnightshift.entities.FreddyFazbear.FreddyFazbearRenderer;
+import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -13,7 +17,7 @@ import org.slf4j.Logger;
 @Mod(AnimatronicNightshift.MODID)
 public class AnimatronicNightshift
 {
-    public static final String MODID = "cannabyssal";
+    public static final String MODID = "animatronicnightshift";
     private static final Logger LOGGER = LogUtils.getLogger();
 
 
@@ -21,7 +25,7 @@ public class AnimatronicNightshift
     {
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
-
+        EntitiesRegister.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
@@ -34,7 +38,7 @@ public class AnimatronicNightshift
         @SubscribeEvent
         public static void onClientSetup(FMLClientSetupEvent event)
         {
-
+            EntityRenderers.register(EntitiesRegister.FREDDY.get(), FreddyFazbearRenderer::new);
         }
     }
 }

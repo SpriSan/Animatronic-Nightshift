@@ -1,0 +1,137 @@
+package animatronicnightshift.entities;
+
+import java.util.ArrayList;
+
+import net.minecraft.world.entity.AnimationState;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.TemptGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.Spider;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.Level;
+
+public class EntityAnimatronic extends Monster {
+
+    private boolean goalsEnabled = true;
+
+
+    public EntityAnimatronic(EntityType<? extends EntityAnimatronic> type, Level level) {
+        super(type, level);
+    }
+
+    public final AnimationState idleAnimationState = new AnimationState();
+    private int idleAnimationTimeout = 0;
+
+
+    @Override
+    public void tick() {
+        super.tick();
+
+        if(this.level().isClientSide()) {
+            setupAnimationStates();
+        }
+    }
+
+
+    private void setupAnimationStates() {
+        if(this.idleAnimationTimeout <= 0) {
+            this.idleAnimationTimeout = this.random.nextInt(40) + 80;
+            this.idleAnimationState.start(this.tickCount);
+        } else {
+            --this.idleAnimationTimeout;
+        }
+    }
+
+    @Override
+    protected void updateWalkAnimation(float pPartialTick) {
+        float f;
+        if(this.getPose() == Pose.STANDING) {
+            f = Math.min(pPartialTick * 6F, 1f);
+        } else {
+            f = 0f;
+        }
+
+        this.walkAnimation.update(f, 0.2f);
+    }
+
+    @Override
+    protected void registerGoals() {
+        this.goalSelector.addGoal(1, new FloatGoal(this));
+        this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 3f));
+        this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+
+    }
+
+    public static AttributeSupplier.Builder createAttributes() {
+        return Monster.createMonsterAttributes() // Use Monster instead of Animal
+                .add(Attributes.MAX_HEALTH, 10D)
+                .add(Attributes.FOLLOW_RANGE, 24D)
+                .add(Attributes.MOVEMENT_SPEED, 0.35D)
+                .add(Attributes.ATTACK_DAMAGE, 999); 
+    }
+
+    private void clearGoals() {
+        // Copie de la liste pour éviter ConcurrentModificationException
+        new ArrayList<>(this.goalSelector.getAvailableGoals()).forEach(wrappedGoal ->
+                this.goalSelector.removeGoal(wrappedGoal.getGoal())
+        );
+
+        new ArrayList<>(this.targetSelector.getAvailableGoals()).forEach(wrappedGoal ->
+                this.targetSelector.removeGoal(wrappedGoal.getGoal())
+        );
+    }
+
+
+    private void disableGoals() {
+        clearGoals();
+        this.goalsEnabled = false;
+
+        this.getNavigation().stop();
+        this.setDeltaMovement(0, this.getDeltaMovement().y, 0);
+    }
+
+    private void enableGoals() {
+        this.goalsEnabled = true;
+
+        this.goalSelector.addGoal(1, new FloatGoal(this));
+        this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 3f));
+        this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+
+        // Si tu veux qu’il attaque uniquement la nuit
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, true));
+        this.targetSelector.addGoal(1,
+            new net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal<>(this, Player.class, true));
+    }
+        
+    @Override
+    public void aiStep() {
+        super.aiStep();
+
+        boolean isNight = !this.level().isDay();
+
+        if (isNight && !goalsEnabled) {
+            enableGoals();
+        } else if (!isNight && goalsEnabled) {
+            disableGoals();
+        }
+
+        //    if (!isNight) {
+        //        this.setPose(Pose.SLEEPING); 
+        //    } else {
+        //        this.setPose(Pose.STANDING); 
+        //    }
+    }
+}
