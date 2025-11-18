@@ -2,6 +2,11 @@ package animatronicnightshift.entities;
 
 import java.util.ArrayList;
 
+import animatronicnightshift.gui.JumpscareScreen;
+import net.minecraft.client.Minecraft;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.LivingEntity;
@@ -20,6 +25,7 @@ import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Spider;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potion;
 import net.minecraft.world.item.crafting.Ingredient;
 import net.minecraft.world.level.Level;
 
@@ -27,6 +33,7 @@ public class EntityAnimatronic extends Monster {
 
     private boolean goalsEnabled = true;
 
+    // todo : effet de lenteur lors du jumpscare + cécité
 
     public EntityAnimatronic(EntityType<? extends EntityAnimatronic> type, Level level) {
         super(type, level);
@@ -35,23 +42,60 @@ public class EntityAnimatronic extends Monster {
     public final AnimationState idleAnimationState = new AnimationState();
     private int idleAnimationTimeout = 0;
 
+    public final AnimationState jumpscareAnimationState = new AnimationState();
+
+
+    private boolean isNightTime() {
+        long time = this.level().getDayTime() % 24000L;
+        return time >= 13000L && time <= 23000L; // nuit vanilla
+        }
 
     @Override
     public void tick() {
         super.tick();
 
-        if(this.level().isClientSide()) {
-            setupAnimationStates();
+        if (this.level().isClientSide()) {
+
+            boolean night = isNightTime();
+
+            if (!night) {
+                setupAnimationStates();
+            } else {
+                idleAnimationState.stop();
+                idleAnimationTimeout = 0;
+            }
         }
+
+                boolean night = isNightTime();
+        if (night && !goalsEnabled) {
+            enableGoals();
+        } else if (!night && goalsEnabled) {
+            disableGoals();
+        }
+
+        if (level().isClientSide() && isNightTime()) {
+            Player player = Minecraft.getInstance().player;
+            if (player != null && this.distanceToSqr(player) < 2.1D && !player.isCreative()) {
+                Minecraft.getInstance().setScreen(new JumpscareScreen(this));
+                player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 999, 30));
+                player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 999, 2));
+            }
+        }
+
     }
 
 
     private void setupAnimationStates() {
-        if(this.idleAnimationTimeout <= 0) {
-            this.idleAnimationTimeout = this.random.nextInt(40) + 80;
-            this.idleAnimationState.start(this.tickCount);
+        if (!this.level().isDay()) {
+            idleAnimationState.stop();
+            return;
+        }
+
+        if (idleAnimationTimeout <= 0) {
+            idleAnimationTimeout = 80;
+            idleAnimationState.start(this.tickCount);
         } else {
-            --this.idleAnimationTimeout;
+            idleAnimationTimeout--;
         }
     }
 
@@ -79,8 +123,8 @@ public class EntityAnimatronic extends Monster {
         return Monster.createMonsterAttributes() // Use Monster instead of Animal
                 .add(Attributes.MAX_HEALTH, 10D)
                 .add(Attributes.FOLLOW_RANGE, 24D)
-                .add(Attributes.MOVEMENT_SPEED, 0.35D)
-                .add(Attributes.ATTACK_DAMAGE, 999); 
+                .add(Attributes.MOVEMENT_SPEED, 0.27D)
+                .add(Attributes.ATTACK_DAMAGE, 17); 
     }
 
     private void clearGoals() {
@@ -110,28 +154,22 @@ public class EntityAnimatronic extends Monster {
         this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 3f));
         this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
 
-        // Si tu veux qu’il attaque uniquement la nuit
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, true));
-        this.targetSelector.addGoal(1,
-            new net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal<>(this, Player.class, true));
+
+       this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, true));
+       this.targetSelector.addGoal(1,
+       new net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal<>(this, Player.class, true));
     }
         
     @Override
     public void aiStep() {
         super.aiStep();
 
-        boolean isNight = !this.level().isDay();
 
-        if (isNight && !goalsEnabled) {
+        boolean night = isNightTime();
+        if (night && !goalsEnabled) {
             enableGoals();
-        } else if (!isNight && goalsEnabled) {
+        } else if (!night && goalsEnabled) {
             disableGoals();
         }
-
-        //    if (!isNight) {
-        //        this.setPose(Pose.SLEEPING); 
-        //    } else {
-        //        this.setPose(Pose.STANDING); 
-        //    }
     }
 }

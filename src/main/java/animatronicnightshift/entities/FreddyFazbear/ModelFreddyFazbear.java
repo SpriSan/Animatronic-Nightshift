@@ -168,8 +168,10 @@ private final ModelPart bone7;
 	}
 
 	@Override
-	public void setupAnim(T p_102618_, float p_102619_, float p_102620_, float p_102621_, float p_102622_,
-			float p_102623_) {
+	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
+		this.root().getAllParts().forEach(ModelPart::resetPose);
+		this.animate(((FreddyFazbear) entity).idleAnimationState, FreddyFazbearAnimation.dance, ageInTicks, 1f);
+		this.animate(((FreddyFazbear) entity).jumpscareAnimationState, FreddyFazbearAnimation.jumpscare, ageInTicks, 1f);
 	}
 
 	@Override
