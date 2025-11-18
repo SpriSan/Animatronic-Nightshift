@@ -124,7 +124,7 @@ public class EntityAnimatronic extends Monster {
                 .add(Attributes.MAX_HEALTH, 10D)
                 .add(Attributes.FOLLOW_RANGE, 24D)
                 .add(Attributes.MOVEMENT_SPEED, 0.27D)
-                .add(Attributes.ATTACK_DAMAGE, 17); 
+                .add(Attributes.ATTACK_DAMAGE, 9); 
     }
 
     private void clearGoals() {
