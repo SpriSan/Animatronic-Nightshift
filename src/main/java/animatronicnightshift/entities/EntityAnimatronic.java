@@ -55,6 +55,8 @@
         public void tick() {
             super.tick();
 
+            if (isNightTime()) enableGoals();
+
             if (this.level().isClientSide()) {
 
                 boolean night = isNightTime();
@@ -76,7 +78,7 @@
 
             if (level().isClientSide() && isNightTime()) {
                 Player player = Minecraft.getInstance().player;
-                if (player != null && this.distanceToSqr(player) < 20D && !player.isCreative()) {
+                if (player != null && this.distanceToSqr(player) < 2.9D && !player.isCreative() && !player.isDeadOrDying()) {
 
                     JumpscareOverlay.isActive = true;
                     JumpscareOverlay.setAnimatronic(this);
@@ -131,7 +133,7 @@
                     .add(Attributes.MAX_HEALTH, 10D)
                     .add(Attributes.FOLLOW_RANGE, 24D)
                     .add(Attributes.MOVEMENT_SPEED, 0.27D)
-                    .add(Attributes.ATTACK_DAMAGE, 13); 
+                    .add(Attributes.ATTACK_DAMAGE, 17); 
         }
 
         private void clearGoals() {
@@ -162,7 +164,7 @@
             this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
 
 
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 1.0D, true));
+        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 0.9D, true));
         this.targetSelector.addGoal(1,
         new net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal<>(this, Player.class, true));
         }
