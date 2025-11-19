@@ -47,7 +47,7 @@ public class JumpscareScreen extends Screen{
 
 
         ticks++;
-        if (ticks >= 40 || !Minecraft.getInstance().player.isAlive() || !animatronic.isAlive()) {
+        if (ticks >= 80 || !Minecraft.getInstance().player.isAlive() || !animatronic.isAlive()) {
             Minecraft.getInstance().setScreen(null);
         }
     }
