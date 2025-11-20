@@ -1,6 +1,7 @@
 package animatronicnightshift.entities;
 
 import animatronicnightshift.AnimatronicNightshift;
+import animatronicnightshift.entities.Bonnie.Bonnie;
 import animatronicnightshift.entities.FreddyFazbear.FreddyFazbear;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
@@ -19,6 +20,11 @@ public class EntitiesRegister {
                     .sized(0.8f, 2f)
                     .build("freddy"));
 
+    public static final RegistryObject<EntityType<Bonnie>> BONNIE =
+            ENTITY_TYPES.register("bonnie", () -> EntityType.Builder.of(Bonnie::new, MobCategory.MONSTER)
+                    .sized(0.8f, 2f)
+                    .build("bonnie"));  
+                    
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
     }

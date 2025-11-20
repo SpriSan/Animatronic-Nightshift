@@ -19,51 +19,65 @@ import net.minecraftforge.fml.common.Mod;
 @Mod.EventBusSubscriber(modid = AnimatronicNightshift.MODID, value = Dist.CLIENT)
 public class JumpscareOverlay {
 
-    public static boolean isActive;
-    public static EntityAnimatronic animatronic;
-    public static int ticks;
-    private static EntityAnimatronic fake;
 
-    public static void setAnimatronic(EntityAnimatronic entity) {
-         animatronic = entity;
+    private static final JumpscareOverlay INSTANCE = new JumpscareOverlay();
+    public static JumpscareOverlay get() { return INSTANCE; }
+
+    private EntityAnimatronic source;
+    private EntityAnimatronic fake;
+    private boolean active = false;
+
+    public void trigger(EntityAnimatronic anim) {
+        this.source = anim;
+        this.active = true;
+        this.fake = null; 
     }
 
-@SubscribeEvent
-public static void onRenderOverlay(RenderGuiOverlayEvent.Post event) {
-    if (!isActive || animatronic == null) return;
-
-    GuiGraphics gfx = event.getGuiGraphics();
-    Minecraft mc = Minecraft.getInstance();
-
-    // Crée le fake seulement une fois
-    if (fake == null) {
-        fake = createFakeAnimatronic(animatronic);
+    public void stop() {
+        this.active = false;
+        this.source = null;
+        this.fake = null;
     }
 
-    drawEntityOnScreen(
-            gfx,
-            mc.getWindow().getGuiScaledWidth() / 2,
-            mc.getWindow().getGuiScaledHeight() / 2 + 640,
-            300,
-            fake,
-            animatronic
-    );
-}
+    
+    
+    @SubscribeEvent
+    public static void onRenderOverlay(RenderGuiOverlayEvent.Post event) {
+        JumpscareOverlay self = get();
 
-    public static EntityAnimatronic createFakeAnimatronic(EntityAnimatronic original) {
-        Minecraft mc = Minecraft.getInstance();
-        if (mc.level == null || original == null) return null;
+                if (!self.active || self.source == null) return;
 
-        EntityAnimatronic fake = (EntityAnimatronic) original.getType().create(mc.level);
-        if (fake == null) return null;
+                Minecraft mc = Minecraft.getInstance();
+                GuiGraphics gfx = event.getGuiGraphics();
 
-        fake.setPos(0, 0, 0);
+                // Créer un fake si besoin
+                if (self.fake == null)
+                    self.fake = createFake(self.source);
 
-        fake.jumpscareAnimationState.start(original.tickCount);
+                if (self.fake == null) return;
 
-        return fake;
+                self.fake.tickCount += 1;
+
+                drawEntityOnScreen(
+                        gfx,
+                        mc.getWindow().getGuiScaledWidth() / 2,
+                        mc.getWindow().getGuiScaledHeight() / 2 + 640,
+                        300,
+                        self.fake,
+                        self.source
+                );
+            }
+
+        private static EntityAnimatronic createFake(EntityAnimatronic original) {
+            Minecraft mc = Minecraft.getInstance();
+            if (mc.level == null) return null;
+
+            EntityAnimatronic f = (EntityAnimatronic) original.getType().create(mc.level);
+            if (f == null) return null;
+
+            f.jumpscareAnimationState.start(original.tickCount);
+            return f;
     }
-
 
     public static void drawEntityOnScreen(GuiGraphics gfx, int x, int y, int scale, LivingEntity fake, LivingEntity original) {
         PoseStack pose = gfx.pose();
@@ -78,7 +92,7 @@ public static void onRenderOverlay(RenderGuiOverlayEvent.Post event) {
         dispatcher.setRenderShadow(false);
 
         MultiBufferSource.BufferSource buffer = Minecraft.getInstance().renderBuffers().bufferSource();
-        dispatcher.render(fake, 0.0D, 0.0D, 0.0D, 0.0F, original.tickCount, pose, buffer, 15728880);
+        dispatcher.render(fake, 0.0D, 0.0D, 0.0D, 0.0F, fake.tickCount, pose, buffer, 15728880);
 
 
         buffer.endBatch();

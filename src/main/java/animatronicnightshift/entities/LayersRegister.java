@@ -12,5 +12,9 @@ import net.minecraftforge.fml.common.Mod;
 public class LayersRegister {
         public static final ModelLayerLocation FREDDY_LAYER =
                 new ModelLayerLocation(new ResourceLocation(AnimatronicNightshift.MODID, "freddy"), "main");
+            
+        public static final ModelLayerLocation BONNIE_LAYER =
+                new ModelLayerLocation(new ResourceLocation(AnimatronicNightshift.MODID, "bonnie"), "main");
+            
 
 }

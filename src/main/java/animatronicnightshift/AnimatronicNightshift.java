@@ -3,6 +3,7 @@ package animatronicnightshift;
 import com.mojang.logging.LogUtils;
 
 import animatronicnightshift.entities.EntitiesRegister;
+import animatronicnightshift.entities.Bonnie.BonnieRenderer;
 import animatronicnightshift.entities.FreddyFazbear.FreddyFazbearRenderer;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
@@ -39,6 +40,8 @@ public class AnimatronicNightshift
         public static void onClientSetup(FMLClientSetupEvent event)
         {
             EntityRenderers.register(EntitiesRegister.FREDDY.get(), FreddyFazbearRenderer::new);
+            EntityRenderers.register(EntitiesRegister.BONNIE.get(), BonnieRenderer::new);
+      
         }
     }
 }

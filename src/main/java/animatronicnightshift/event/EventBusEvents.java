@@ -2,6 +2,7 @@ package animatronicnightshift.event;
 
 import animatronicnightshift.AnimatronicNightshift;
 import animatronicnightshift.entities.EntitiesRegister;
+import animatronicnightshift.entities.Bonnie.Bonnie;
 import animatronicnightshift.entities.FreddyFazbear.FreddyFazbear;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.MinecraftServer;
@@ -23,6 +24,7 @@ public class EventBusEvents {
     @SubscribeEvent
     public static void registerAttributes(EntityAttributeCreationEvent event) {
         event.put(EntitiesRegister.FREDDY.get(), FreddyFazbear.createAttributes().build());;
+        event.put(EntitiesRegister.BONNIE.get(), Bonnie.createAttributes().build());;
 
     }
 }

@@ -2,7 +2,9 @@
 
     import java.util.ArrayList;
 
-    import animatronicnightshift.event.JumpscareOverlay;
+import animatronicnightshift.event.ClientJumpscareData;
+import animatronicnightshift.event.ClientJumpscareManager;
+import animatronicnightshift.event.JumpscareOverlay;
     import animatronicnightshift.gui.JumpscareScreen;
     import net.minecraft.client.Minecraft;
     import net.minecraft.world.effect.MobEffect;
@@ -76,21 +78,18 @@
                     disableGoals();
             }
 
-            if (level().isClientSide() && isNightTime()) {
-                Player player = Minecraft.getInstance().player;
-                if (player != null && this.distanceToSqr(player) < 2D && !player.isCreative() && !player.isDeadOrDying() && isNightTime()) {
+                if (!level().isClientSide()) return;
 
-                    JumpscareOverlay.isActive = true;
-                    JumpscareOverlay.setAnimatronic(this);
-                    
-                    //player.addEffect(new MobEffectInstance(MobEffects.MOVEMENT_SLOWDOWN, 50, 3));
-                    //player.addEffect(new MobEffectInstance(MobEffects.BLINDNESS, 50, 2));
+                Player player = Minecraft.getInstance().player;
+
+                if (player == null) return;
+
+                if (this.distanceTo(player) < 1.8F && !player.isDeadOrDying() && isNightTime()) {
+                    JumpscareOverlay.get().trigger(this);
                 }
                 else {
-                    JumpscareOverlay.isActive = false;
+                    JumpscareOverlay.get().stop();
                 }
-            }
-
         }
 
 

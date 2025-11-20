@@ -2,6 +2,7 @@ package animatronicnightshift.event;
 
 import animatronicnightshift.AnimatronicNightshift;
 import animatronicnightshift.entities.LayersRegister;
+import animatronicnightshift.entities.Bonnie.ModelBonnie;
 import animatronicnightshift.entities.FreddyFazbear.ModelFreddyFazbear;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HorseModel;
@@ -19,6 +20,7 @@ public class EventBusClientEvents {
     @SubscribeEvent
     public static void registerLayer(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(LayersRegister.FREDDY_LAYER, ModelFreddyFazbear::createBodyLayer);
+        event.registerLayerDefinition(LayersRegister.BONNIE_LAYER, ModelBonnie::createBodyLayer);
 
     }
 }
