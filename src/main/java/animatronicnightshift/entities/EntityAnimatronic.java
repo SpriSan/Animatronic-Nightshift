@@ -49,7 +49,7 @@
         private boolean isNightTime() {
             long time = this.level().getDayTime() % 24000L;
             return time >= 13000L && time <= 23000L; // nuit vanilla
-            }
+        }
 
         @Override
         public void tick() {
@@ -78,7 +78,7 @@
 
             if (level().isClientSide() && isNightTime()) {
                 Player player = Minecraft.getInstance().player;
-                if (player != null && this.distanceToSqr(player) < 2.9D && !player.isCreative() && !player.isDeadOrDying()) {
+                if (player != null && this.distanceToSqr(player) < 2D && !player.isCreative() && !player.isDeadOrDying() && isNightTime()) {
 
                     JumpscareOverlay.isActive = true;
                     JumpscareOverlay.setAnimatronic(this);
@@ -129,11 +129,11 @@
         }
 
         public static AttributeSupplier.Builder createAttributes() {
-            return Monster.createMonsterAttributes() // Use Monster instead of Animal
+            return Monster.createMonsterAttributes() 
                     .add(Attributes.MAX_HEALTH, 10D)
                     .add(Attributes.FOLLOW_RANGE, 24D)
                     .add(Attributes.MOVEMENT_SPEED, 0.27D)
-                    .add(Attributes.ATTACK_DAMAGE, 17); 
+                    .add(Attributes.ATTACK_DAMAGE, 17);
         }
 
         private void clearGoals() {
@@ -164,7 +164,7 @@
             this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
 
 
-        this.goalSelector.addGoal(2, new MeleeAttackGoal(this, 0.9D, true));
+        this.goalSelector.addGoal(2, new AnimatronicAttackGoal(this, 1D, true));
         this.targetSelector.addGoal(1,
         new net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal<>(this, Player.class, true));
         }
