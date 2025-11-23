@@ -8,6 +8,7 @@ import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.Level;
 
 public class FreddyFazbearRenderer extends MobRenderer<FreddyFazbear, ModelFreddyFazbear<FreddyFazbear>> {
     public FreddyFazbearRenderer(EntityRendererProvider.Context pContext) {
@@ -15,8 +16,20 @@ public class FreddyFazbearRenderer extends MobRenderer<FreddyFazbear, ModelFredd
     }
 
     @Override
-    public ResourceLocation getTextureLocation(FreddyFazbear pEntity) {
-        return new ResourceLocation(AnimatronicNightshift.MODID, "textures/entity/freddyfazbear.png");
+    public ResourceLocation getTextureLocation(FreddyFazbear entity) {
+        Level level = entity.level();
+        if (level != null) {
+            long time = level.getDayTime() % 24000L;
+            boolean isNight = time >= 13000 && time <= 23000;
+
+            if (isNight) {
+                return new ResourceLocation(AnimatronicNightshift.MODID,
+                        "textures/entity/freddyfazbear_night.png");
+            }
+        }
+
+        return new ResourceLocation(AnimatronicNightshift.MODID,
+                "textures/entity/freddyfazbear.png");
     }
 
     @Override
