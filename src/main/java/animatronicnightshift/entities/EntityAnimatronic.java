@@ -1,36 +1,34 @@
-    package animatronicnightshift.entities;
+package animatronicnightshift.entities;
 
-    import java.util.ArrayList;
-
+import java.util.ArrayList;
 import animatronicnightshift.event.ClientJumpscareData;
 import animatronicnightshift.event.ClientJumpscareManager;
 import animatronicnightshift.event.JumpscareOverlay;
-    import animatronicnightshift.gui.JumpscareScreen;
-    import net.minecraft.client.Minecraft;
-    import net.minecraft.world.effect.MobEffect;
-    import net.minecraft.world.effect.MobEffectInstance;
-    import net.minecraft.world.effect.MobEffects;
-    import net.minecraft.world.entity.AnimationState;
-    import net.minecraft.world.entity.EntityType;
-    import net.minecraft.world.entity.LivingEntity;
-    import net.minecraft.world.entity.Mob;
-    import net.minecraft.world.entity.Pose;
-    import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
-    import net.minecraft.world.entity.ai.attributes.Attributes;
-    import net.minecraft.world.entity.ai.goal.FloatGoal;
-    import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-    import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-    import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-    import net.minecraft.world.entity.ai.goal.TemptGoal;
-    import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
-    import net.minecraft.world.entity.animal.Animal;
-    import net.minecraft.world.entity.monster.Monster;
-    import net.minecraft.world.entity.monster.Spider;
-    import net.minecraft.world.entity.player.Player;
-    import net.minecraft.world.item.Items;
-    import net.minecraft.world.item.alchemy.Potion;
-    import net.minecraft.world.item.crafting.Ingredient;
-    import net.minecraft.world.level.Level;
+import net.minecraft.client.Minecraft;
+import net.minecraft.world.effect.MobEffect;
+import net.minecraft.world.effect.MobEffectInstance;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.AnimationState;
+import net.minecraft.world.entity.EntityType;
+import net.minecraft.world.entity.LivingEntity;
+import net.minecraft.world.entity.Mob;
+import net.minecraft.world.entity.Pose;
+import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
+import net.minecraft.world.entity.ai.attributes.Attributes;
+import net.minecraft.world.entity.ai.goal.FloatGoal;
+import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
+import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
+import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
+import net.minecraft.world.entity.ai.goal.TemptGoal;
+import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.animal.Animal;
+import net.minecraft.world.entity.monster.Monster;
+import net.minecraft.world.entity.monster.Spider;
+import net.minecraft.world.entity.player.Player;
+import net.minecraft.world.item.Items;
+import net.minecraft.world.item.alchemy.Potion;
+import net.minecraft.world.item.crafting.Ingredient;
+import net.minecraft.world.level.Level;
 
     public class EntityAnimatronic extends Monster {
 
@@ -84,7 +82,7 @@ import animatronicnightshift.event.JumpscareOverlay;
 
                 if (player == null) return;
 
-                if (this.distanceTo(player) < 1.8F && !player.isDeadOrDying() && isNightTime()) {
+                if (this.distanceTo(player) < 1.8F && !player.isDeadOrDying() && !player.isCreative() && isNightTime()) {
                     JumpscareOverlay.get().trigger(this);
                 }
                 else {

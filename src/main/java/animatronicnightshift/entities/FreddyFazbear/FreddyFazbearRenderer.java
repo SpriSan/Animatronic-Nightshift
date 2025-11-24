@@ -24,7 +24,7 @@ public class FreddyFazbearRenderer extends MobRenderer<FreddyFazbear, ModelFredd
 
             if (isNight) {
                 return new ResourceLocation(AnimatronicNightshift.MODID,
-                        "textures/entity/freddyfazbear_night.png");
+                        "textures/entity/freddyfazbear.png");
             }
         }
 
