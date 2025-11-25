@@ -27,10 +27,14 @@ public class JumpscareOverlay {
     private EntityAnimatronic fake;
     private boolean active = false;
 
+    private float partialTick = 0;
+    private long startTime = 0;
+
     public void trigger(EntityAnimatronic anim) {
         this.source = anim;
         this.active = true;
         this.fake = null; 
+        this.startTime = System.nanoTime();
     }
 
     public void stop() {
@@ -45,6 +49,7 @@ public class JumpscareOverlay {
     public static void onRenderOverlay(RenderGuiOverlayEvent.Post event) {
         JumpscareOverlay self = get();
 
+
                 if (!self.active || self.source == null) return;
 
                 Minecraft mc = Minecraft.getInstance();
@@ -56,7 +61,16 @@ public class JumpscareOverlay {
 
                 if (self.fake == null) return;
 
-                self.fake.tickCount += 1;
+                long now = System.nanoTime();
+                double elapsedSeconds = (now - self.startTime) / 1_000_000_000.0;
+
+                double ticks = elapsedSeconds * 20.0; // 20 ticks par seconde
+
+                int wholeTicks = (int) ticks;
+                float partial = (float) (ticks - wholeTicks);
+
+                self.fake.tickCount = wholeTicks;
+                self.partialTick = partial;
 
                 drawEntityOnScreen(
                         gfx,
@@ -64,7 +78,8 @@ public class JumpscareOverlay {
                         mc.getWindow().getGuiScaledHeight() / 2 + 640,
                         300,
                         self.fake,
-                        self.source
+                        self.source,
+                        self.partialTick
                 );
             }
 
@@ -79,7 +94,7 @@ public class JumpscareOverlay {
             return f;
     }
 
-    public static void drawEntityOnScreen(GuiGraphics gfx, int x, int y, int scale, LivingEntity fake, LivingEntity original) {
+    public static void drawEntityOnScreen(GuiGraphics gfx, int x, int y, int scale, LivingEntity fake, LivingEntity original, float partialTick) {
         PoseStack pose = gfx.pose();
         pose.pushPose();
         pose.translate(x, y, 105.0D);
@@ -92,7 +107,7 @@ public class JumpscareOverlay {
         dispatcher.setRenderShadow(false);
 
         MultiBufferSource.BufferSource buffer = Minecraft.getInstance().renderBuffers().bufferSource();
-        dispatcher.render(fake, 0.0D, 0.0D, 0.0D, 0.0F, fake.tickCount, pose, buffer, 15728880);
+        dispatcher.render(fake, 0.0D, 0.0D, 0.0D, 0.0F, partialTick, pose, buffer, 15728880);
 
 
         buffer.endBatch();

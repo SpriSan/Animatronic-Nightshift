@@ -16,6 +16,7 @@ import net.minecraft.client.model.geom.builders.CubeListBuilder;
 import net.minecraft.client.model.geom.builders.LayerDefinition;
 import net.minecraft.client.model.geom.builders.MeshDefinition;
 import net.minecraft.client.model.geom.builders.PartDefinition;
+import net.minecraft.util.Mth;
 import net.minecraft.world.entity.Entity;
 
 public class ModelFreddyFazbear<T extends FreddyFazbear> extends HierarchicalModel<T> {
@@ -172,6 +173,7 @@ private final ModelPart bone7;
 		this.root().getAllParts().forEach(ModelPart::resetPose);
 		this.animate(((FreddyFazbear) entity).idleAnimationState, FreddyFazbearAnimation.dance, ageInTicks, 1f);
 		this.animate(((FreddyFazbear) entity).jumpscareAnimationState, FreddyFazbearAnimation.jumpscare, ageInTicks, 1f);
+	
 	}
 
 	@Override
