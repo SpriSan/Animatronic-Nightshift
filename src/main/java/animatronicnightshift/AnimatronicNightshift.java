@@ -2,9 +2,11 @@ package animatronicnightshift;
 
 import com.mojang.logging.LogUtils;
 
+import animatronicnightshift.blocks.BlocksRegister;
 import animatronicnightshift.entities.EntitiesRegister;
 import animatronicnightshift.entities.Bonnie.BonnieRenderer;
 import animatronicnightshift.entities.FreddyFazbear.FreddyFazbearRenderer;
+import animatronicnightshift.items.ItemsRegister;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.common.MinecraftForge;
@@ -27,6 +29,8 @@ public class AnimatronicNightshift
         IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         EntitiesRegister.register(modEventBus);
+        BlocksRegister.register(modEventBus);
+        ItemsRegister.register(modEventBus);
 
         MinecraftForge.EVENT_BUS.register(this);
     }
