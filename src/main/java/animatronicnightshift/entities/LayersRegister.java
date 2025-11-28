@@ -16,5 +16,7 @@ public class LayersRegister {
         public static final ModelLayerLocation BONNIE_LAYER =
                 new ModelLayerLocation(new ResourceLocation(AnimatronicNightshift.MODID, "bonnie"), "main");
             
-
+        public static final ModelLayerLocation CHICA_LAYER =
+                new ModelLayerLocation(new ResourceLocation(AnimatronicNightshift.MODID, "chica"), "main");
+            
 }

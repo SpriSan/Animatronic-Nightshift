@@ -5,6 +5,7 @@ import com.mojang.logging.LogUtils;
 import animatronicnightshift.blocks.BlocksRegister;
 import animatronicnightshift.entities.EntitiesRegister;
 import animatronicnightshift.entities.Bonnie.BonnieRenderer;
+import animatronicnightshift.entities.Chica.ChicaRenderer;
 import animatronicnightshift.entities.FreddyFazbear.FreddyFazbearRenderer;
 import animatronicnightshift.items.ItemsRegister;
 import net.minecraft.client.renderer.entity.EntityRenderers;
@@ -45,6 +46,7 @@ public class AnimatronicNightshift
         {
             EntityRenderers.register(EntitiesRegister.FREDDY.get(), FreddyFazbearRenderer::new);
             EntityRenderers.register(EntitiesRegister.BONNIE.get(), BonnieRenderer::new);
+            EntityRenderers.register(EntitiesRegister.CHICA.get(), ChicaRenderer::new);
       
         }
     }

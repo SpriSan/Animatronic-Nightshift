@@ -65,7 +65,7 @@ private final ModelPart bone7;
 		MeshDefinition meshdefinition = new MeshDefinition();
 		PartDefinition partdefinition = meshdefinition.getRoot();
 
-		PartDefinition bone7 = partdefinition.addOrReplaceChild("bone7", CubeListBuilder.create().texOffs(30, 30).addBox(-4.0F, -17.0F, -4.0F, 9.0F, 2.0F, 7.0F, new CubeDeformation(0.0F))
+PartDefinition bone7 = partdefinition.addOrReplaceChild("bone7", CubeListBuilder.create().texOffs(30, 30).addBox(-4.0F, -17.0F, -4.0F, 9.0F, 2.0F, 7.0F, new CubeDeformation(0.0F))
 		.texOffs(60, 20).addBox(-1.5F, -15.0F, -4.0F, 4.0F, 1.0F, 7.0F, new CubeDeformation(0.0F)), PartPose.offset(-0.5F, 18.0F, 0.0F));
 
 		PartDefinition corps = bone7.addOrReplaceChild("corps", CubeListBuilder.create().texOffs(0, 30).addBox(-4.0F, -15.0F, -3.5F, 8.0F, 4.0F, 7.0F, new CubeDeformation(0.0F))
@@ -137,7 +137,7 @@ private final ModelPart bone7;
 		.texOffs(0, 74).addBox(-0.8532F, -3.9846F, -0.5F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-2.25F, -7.0F, -0.5F, 0.0F, 0.0F, -1.0036F));
 
 		PartDefinition bone21 = tete.addOrReplaceChild("bone21", CubeListBuilder.create().texOffs(6, 74).addBox(-1.1468F, -3.9846F, -0.5F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F))
-		.texOffs(46, 75).addBox(-0.6468F, -1.9846F, -0.5F, 1.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.25F, -7.0F, -0.5F, 0.0F, 0.0F, 1.0036F));
+		.texOffs(50, 67).addBox(-0.6468F, -1.9846F, -0.5F, 1.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(2.25F, -7.0F, -0.5F, 0.0F, 0.0F, 1.0036F));
 
 		PartDefinition jambedroite = bone7.addOrReplaceChild("jambedroite", CubeListBuilder.create(), PartPose.offsetAndRotation(-1.5F, -14.5F, -1.75F, 0.1282F, -0.0205F, -0.0065F));
 
@@ -174,6 +174,29 @@ private final ModelPart bone7;
 		this.animate(((FreddyFazbear) entity).idleAnimationState, FreddyFazbearAnimation.dance, ageInTicks, 1f);
 		this.animate(((FreddyFazbear) entity).jumpscareAnimationState, FreddyFazbearAnimation.jumpscare, ageInTicks, 1f);
 	
+		this.applyHeadRotation(netHeadYaw, headPitch, ageInTicks);
+
+		this.jambedroite.xRot += Mth.cos(limbSwing * 0.8F) * 0.8F * limbSwingAmount * 0.5F;
+		this.jambegauche.xRot += Mth.cos(limbSwing * 0.8F + (float)Math.PI) * 0.8F * limbSwingAmount * 0.5F;
+		this.jambedroite.yRot += 0.0F;
+		this.jambegauche.yRot += 0.0F;
+
+		this.brasgauche.xRot += Mth.cos(limbSwing * 0.8F) * 0.8F * limbSwingAmount * 0.5F;
+		this.brasdroit.xRot += Mth.cos(limbSwing * 0.8F + (float)Math.PI) * 0.8F * limbSwingAmount * 0.5F;
+		this.brasgauche.yRot += 0.0F;
+		this.brasdroit.yRot += 0.0F;			
+
+	}
+	private void applyHeadRotation(float pNetHeadYaw, float pHeadPitch, float pAgeInTicks) {
+
+		float yawClamped = Mth.clamp(pNetHeadYaw, -30.0F, 30.0F);
+		float pitchClamped = Mth.clamp(pHeadPitch, -25.0F, 45.0F);
+
+		float yawRad = yawClamped * ((float)Math.PI / 180F);
+		float pitchRad = pitchClamped * ((float)Math.PI / 180F);
+
+		this.tete.yRot += yawRad;
+		this.tete.xRot += pitchRad;
 	}
 
 	@Override
