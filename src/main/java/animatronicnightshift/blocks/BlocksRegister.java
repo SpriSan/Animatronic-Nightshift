@@ -3,7 +3,7 @@ package animatronicnightshift.blocks;
 import java.util.function.Supplier;
 
 import animatronicnightshift.AnimatronicNightshift;
-import animatronicnightshift.blocks.camera.Camera;
+import animatronicnightshift.blocks.camera.BlockCamera;
 import animatronicnightshift.items.ItemsRegister;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.Item;
@@ -23,7 +23,7 @@ public class BlocksRegister {
 
     public static final RegistryObject<Block> CAMERA =
             registerBlock("security_camera",
-                    () -> new Camera(BlockBehaviour.Properties.of().noOcclusion().noCollission()));
+                    () -> new BlockCamera(BlockBehaviour.Properties.of().noOcclusion().noCollission()));
 
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);

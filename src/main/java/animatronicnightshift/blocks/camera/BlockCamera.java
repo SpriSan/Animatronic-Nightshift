@@ -14,11 +14,11 @@ import net.minecraft.world.level.block.state.BlockState;
 import net.minecraft.world.level.block.state.StateDefinition;
 import net.minecraft.world.level.block.state.properties.DirectionProperty;
 
-public class Camera extends Block implements EntityBlock {
+public class BlockCamera extends Block implements EntityBlock {
 
     public static final DirectionProperty FACING = HorizontalDirectionalBlock.FACING;
 
-    public Camera(Properties props) {
+    public BlockCamera(Properties props) {
         super(props.noOcclusion().noCollission());
         this.registerDefaultState(this.stateDefinition.any().setValue(FACING, Direction.NORTH));
     }

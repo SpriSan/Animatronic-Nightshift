@@ -27,7 +27,7 @@ public class CameraRenderer implements BlockEntityRenderer<CameraBlockEntity> {
         poseStack.pushPose();
         poseStack.translate(0.5, 1.5, 0.5);
 
-        Direction dir = be.getBlockState().getValue(Camera.FACING);
+        Direction dir = be.getBlockState().getValue(BlockCamera.FACING);
         poseStack.mulPose(Axis.YP.rotationDegrees(-dir.toYRot()));
 
         poseStack.scale(1f, -1f, -1f);
