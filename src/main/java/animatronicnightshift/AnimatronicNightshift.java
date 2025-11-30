@@ -30,7 +30,7 @@ public class AnimatronicNightshift
 
     public AnimatronicNightshift()
     {
-        IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
+        @SuppressWarnings("removal") IEventBus modEventBus = FMLJavaModLoadingContext.get().getModEventBus();
 
         EntitiesRegister.register(modEventBus);
         BlocksRegister.register(modEventBus);
