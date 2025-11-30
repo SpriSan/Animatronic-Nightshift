@@ -1,5 +1,6 @@
 package animatronicnightshift;
 
+import animatronicnightshift.entities.GoldenFreddy.GoldenFreddyRenderer;
 import com.mojang.logging.LogUtils;
 
 import animatronicnightshift.blocks.BlockEntityRegister;
@@ -50,6 +51,8 @@ public class AnimatronicNightshift
             EntityRenderers.register(EntitiesRegister.FREDDY.get(), FreddyFazbearRenderer::new);
             EntityRenderers.register(EntitiesRegister.BONNIE.get(), BonnieRenderer::new);
             EntityRenderers.register(EntitiesRegister.CHICA.get(), ChicaRenderer::new);
+            EntityRenderers.register(EntitiesRegister.GOLDEN_FREDDY.get(), GoldenFreddyRenderer::new);
+
 
             event.registerBlockEntityRenderer(
                     BlockEntityRegister.CAMERA_BLOCK_ENTITY.get(),

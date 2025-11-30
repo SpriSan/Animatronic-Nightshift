@@ -19,6 +19,10 @@ public class LayersRegister {
         public static final ModelLayerLocation CHICA_LAYER =
                 new ModelLayerLocation(new ResourceLocation(AnimatronicNightshift.MODID, "chica"), "main");
 
+        public static final ModelLayerLocation GOLDEN_FREDDY_LAYER =
+                new ModelLayerLocation(new ResourceLocation(AnimatronicNightshift.MODID, "golden_freddy"), "main");
+
+
         public static final ModelLayerLocation CAMERA_LAYER =
                 new ModelLayerLocation(new ResourceLocation(AnimatronicNightshift.MODID, "camera"), "main");          
 }

@@ -4,6 +4,7 @@ import animatronicnightshift.AnimatronicNightshift;
 import animatronicnightshift.entities.Bonnie.Bonnie;
 import animatronicnightshift.entities.Chica.Chica;
 import animatronicnightshift.entities.FreddyFazbear.FreddyFazbear;
+import animatronicnightshift.entities.GoldenFreddy.GoldenFreddy;
 import net.minecraft.world.entity.Entity;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -29,8 +30,13 @@ public class EntitiesRegister {
     public static final RegistryObject<EntityType<Chica>> CHICA =
             ENTITY_TYPES.register("chica", () -> EntityType.Builder.of(Chica::new, MobCategory.MONSTER)
                     .sized(0.8f, 2f)
-                    .build("chica"));          
-        
+                    .build("chica"));
+
+    public static final RegistryObject<EntityType<GoldenFreddy>> GOLDEN_FREDDY =
+            ENTITY_TYPES.register("golden_freddy", () -> EntityType.Builder.of(GoldenFreddy::new, MobCategory.MONSTER)
+                    .sized(0.8f, 2f)
+                    .build("golden_freddy"));
+
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
     }
