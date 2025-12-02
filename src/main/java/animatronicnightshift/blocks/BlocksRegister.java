@@ -25,6 +25,10 @@ public class BlocksRegister {
             registerBlock("security_camera",
                     () -> new BlockCamera(BlockBehaviour.Properties.of().noOcclusion().noCollission()));
 
+    public static final RegistryObject<Block> CUPCAKE =
+            registerBlock("cupcake",
+                    () -> new BlockCupcake(BlockBehaviour.Properties.of().noOcclusion()));
+
     private static <T extends Block> RegistryObject<T> registerBlock(String name, Supplier<T> block) {
         RegistryObject<T> toReturn = BLOCKS.register(name, block);
         registerBlockItem(name, toReturn);

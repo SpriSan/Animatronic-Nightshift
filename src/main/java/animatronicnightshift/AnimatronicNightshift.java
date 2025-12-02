@@ -11,6 +11,8 @@ import animatronicnightshift.entities.Bonnie.BonnieRenderer;
 import animatronicnightshift.entities.Chica.ChicaRenderer;
 import animatronicnightshift.entities.FreddyFazbear.FreddyFazbearRenderer;
 import animatronicnightshift.items.ItemsRegister;
+import net.minecraft.client.renderer.ItemBlockRenderTypes;
+import net.minecraft.client.renderer.RenderType;
 import net.minecraft.client.renderer.entity.EntityRenderers;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -45,6 +47,11 @@ public class AnimatronicNightshift
 
     @Mod.EventBusSubscriber(modid = MODID, bus = Mod.EventBusSubscriber.Bus.MOD, value = Dist.CLIENT)
     public static class ClientModEvents {
+
+        @SubscribeEvent
+        public static void init(FMLClientSetupEvent event) {
+            ItemBlockRenderTypes.setRenderLayer(BlocksRegister.CUPCAKE.get(), RenderType.cutout());
+        }
 
         @SubscribeEvent
         public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
