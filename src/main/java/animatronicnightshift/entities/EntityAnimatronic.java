@@ -129,7 +129,7 @@ import net.minecraft.world.level.Level;
             return Monster.createMonsterAttributes() 
                     .add(Attributes.MAX_HEALTH, 10D)
                     .add(Attributes.FOLLOW_RANGE, 24D)
-                    .add(Attributes.MOVEMENT_SPEED, 0.27D)
+                    .add(Attributes.MOVEMENT_SPEED, 0.20D)
                     .add(Attributes.ATTACK_DAMAGE, 17);
         }
 

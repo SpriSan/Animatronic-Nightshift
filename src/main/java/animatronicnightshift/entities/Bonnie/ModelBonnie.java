@@ -184,13 +184,13 @@ public class ModelBonnie<T extends Bonnie> extends HierarchicalModel<T> {
 
 		this.applyHeadRotation(netHeadYaw, headPitch, ageInTicks);
 
-		this.jambedroite.xRot += Mth.cos(limbSwing * 0.8F) * 0.8F * limbSwingAmount * 0.5F;
-		this.jambegauche.xRot += Mth.cos(limbSwing * 0.8F + (float)Math.PI) * 0.8F * limbSwingAmount * 0.5F;
+		this.jambedroite.xRot += Mth.cos(limbSwing * 0.3F) * 0.8F * limbSwingAmount * 0.5F;
+		this.jambegauche.xRot += Mth.cos(limbSwing * 0.3F + (float)Math.PI) * 0.8F * limbSwingAmount * 0.5F;
 		this.jambedroite.yRot += 0.0F;
 		this.jambegauche.yRot += 0.0F;
 
-		this.brasgauche.xRot += Mth.cos(limbSwing * 0.8F) * 0.8F * limbSwingAmount * 0.5F;
-		this.brasdroit.xRot += Mth.cos(limbSwing * 0.8F + (float)Math.PI) * 0.8F * limbSwingAmount * 0.5F;
+		this.brasgauche.xRot += Mth.cos(limbSwing * 0.3F) * 0.8F * limbSwingAmount * 0.5F;
+		this.brasdroit.xRot += Mth.cos(limbSwing * 0.3F + (float)Math.PI) * 0.8F * limbSwingAmount * 0.5F;
 		this.brasgauche.yRot += 0.0F;
 		this.brasdroit.yRot += 0.0F;			
 

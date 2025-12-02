@@ -176,17 +176,18 @@ PartDefinition bone7 = partdefinition.addOrReplaceChild("bone7", CubeListBuilder
 	
 		this.applyHeadRotation(netHeadYaw, headPitch, ageInTicks);
 
-		this.jambedroite.xRot += Mth.cos(limbSwing * 0.8F) * 0.8F * limbSwingAmount * 0.5F;
-		this.jambegauche.xRot += Mth.cos(limbSwing * 0.8F + (float)Math.PI) * 0.8F * limbSwingAmount * 0.5F;
-		this.jambedroite.yRot += 0.0F;
-		this.jambegauche.yRot += 0.0F;
+        this.jambedroite.xRot += Mth.cos(limbSwing * 0.3F) * 0.8F * limbSwingAmount * 0.5F;
+        this.jambegauche.xRot += Mth.cos(limbSwing * 0.3F + (float)Math.PI) * 0.8F * limbSwingAmount * 0.5F;
+        this.jambedroite.yRot += 0.0F;
+        this.jambegauche.yRot += 0.0F;
 
-		this.brasgauche.xRot += Mth.cos(limbSwing * 0.8F) * 0.8F * limbSwingAmount * 0.5F;
-		this.brasdroit.xRot += Mth.cos(limbSwing * 0.8F + (float)Math.PI) * 0.8F * limbSwingAmount * 0.5F;
-		this.brasgauche.yRot += 0.0F;
-		this.brasdroit.yRot += 0.0F;			
+        this.brasgauche.xRot += Mth.cos(limbSwing * 0.3F) * 0.8F * limbSwingAmount * 0.5F;
+        this.brasdroit.xRot += Mth.cos(limbSwing * 0.3F + (float)Math.PI) * 0.8F * limbSwingAmount * 0.5F;
+        this.brasgauche.yRot += 0.0F;
+        this.brasdroit.yRot += 0.0F;
 
 	}
+
 	private void applyHeadRotation(float pNetHeadYaw, float pHeadPitch, float pAgeInTicks) {
 
 		float yawClamped = Mth.clamp(pNetHeadYaw, -30.0F, 30.0F);

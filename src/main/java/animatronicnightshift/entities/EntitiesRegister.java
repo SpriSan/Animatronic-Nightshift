@@ -19,22 +19,22 @@ public class EntitiesRegister {
 
     public static final RegistryObject<EntityType<FreddyFazbear>> FREDDY =
             ENTITY_TYPES.register("freddy", () -> EntityType.Builder.of(FreddyFazbear::new, MobCategory.MONSTER)
-                    .sized(0.8f, 2f)
+                    .sized(0.8f, 2.5f)
                     .build("freddy"));
 
     public static final RegistryObject<EntityType<Bonnie>> BONNIE =
             ENTITY_TYPES.register("bonnie", () -> EntityType.Builder.of(Bonnie::new, MobCategory.MONSTER)
-                    .sized(0.8f, 2f)
+                    .sized(0.8f, 2.5f)
                     .build("bonnie"));  
 
     public static final RegistryObject<EntityType<Chica>> CHICA =
             ENTITY_TYPES.register("chica", () -> EntityType.Builder.of(Chica::new, MobCategory.MONSTER)
-                    .sized(0.8f, 2f)
+                    .sized(0.8f, 2.5f)
                     .build("chica"));
 
     public static final RegistryObject<EntityType<GoldenFreddy>> GOLDEN_FREDDY =
             ENTITY_TYPES.register("golden_freddy", () -> EntityType.Builder.of(GoldenFreddy::new, MobCategory.MONSTER)
-                    .sized(0.8f, 2f)
+                    .sized(0.8f, 1.4f)
                     .build("golden_freddy"));
 
     public static void register(IEventBus eventBus) {
