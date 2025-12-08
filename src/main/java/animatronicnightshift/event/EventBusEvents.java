@@ -4,11 +4,13 @@ import animatronicnightshift.AnimatronicNightshift;
 import animatronicnightshift.entities.EntitiesRegister;
 import animatronicnightshift.entities.Bonnie.Bonnie;
 import animatronicnightshift.entities.Chica.Chica;
+import animatronicnightshift.entities.Foxy.Foxy;
 import animatronicnightshift.entities.FreddyFazbear.FreddyFazbear;
 import animatronicnightshift.entities.GoldenFreddy.GoldenFreddy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.entity.animal.Fox;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.item.ItemStack;
@@ -29,7 +31,6 @@ public class EventBusEvents {
         event.put(EntitiesRegister.BONNIE.get(), Bonnie.createAttributes().build());;
         event.put(EntitiesRegister.CHICA.get(), Chica.createAttributes().build());;
         event.put(EntitiesRegister.GOLDEN_FREDDY.get(), GoldenFreddy.createAttributes().build());;
-
-
+        event.put(EntitiesRegister.FOXY.get(), Foxy.createAttributes().build());;
     }
 }

@@ -33,6 +33,9 @@ public class ItemsRegister {
         public static final RegistryObject<SpawnEggItem> CHICA_SPAWN_EGG = ITEMS.register("chica_spawn_egg",
                 () -> new ForgeSpawnEggItem(EntitiesRegister.CHICA, 0x89851B, 0x767321, new Item.Properties()));
 
+        public static final RegistryObject<SpawnEggItem> FOXY_SPAWN_EGG = ITEMS.register("foxy_spawn_egg",
+                () -> new ForgeSpawnEggItem(EntitiesRegister.FOXY, 0x89851B, 0x767321, new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

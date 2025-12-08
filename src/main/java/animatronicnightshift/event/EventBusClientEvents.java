@@ -2,6 +2,7 @@ package animatronicnightshift.event;
 
 import animatronicnightshift.AnimatronicNightshift;
 import animatronicnightshift.blocks.camera.ModelCamera;
+import animatronicnightshift.entities.Foxy.ModelFoxy;
 import animatronicnightshift.entities.GoldenFreddy.ModelGoldenFreddy;
 import animatronicnightshift.entities.LayersRegister;
 import animatronicnightshift.entities.Bonnie.ModelBonnie;
@@ -27,6 +28,7 @@ public class EventBusClientEvents {
         event.registerLayerDefinition(LayersRegister.CHICA_LAYER, ModelChica::createBodyLayer);
         event.registerLayerDefinition(LayersRegister.CAMERA_LAYER, ModelCamera::createBodyLayer);
         event.registerLayerDefinition(LayersRegister.GOLDEN_FREDDY_LAYER, ModelGoldenFreddy::createBodyLayer);
+        event.registerLayerDefinition(LayersRegister.FOXY_LAYER, ModelFoxy::createBodyLayer);
 
     }
 }
