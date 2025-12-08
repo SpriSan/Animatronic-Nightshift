@@ -45,6 +45,8 @@ import net.minecraft.world.level.Level;
 
         public final AnimationState jumpscareAnimationState = new AnimationState();
 
+        double attackSpeed = 1.2D;
+
 
         private boolean isNightTime() {
             long time = this.level().getDayTime() % 24000L;
@@ -161,7 +163,7 @@ import net.minecraft.world.level.Level;
             this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
 
 
-        this.goalSelector.addGoal(2, new AnimatronicAttackGoal(this, 1D, true));
+        this.goalSelector.addGoal(2, new AnimatronicAttackGoal(this, attackSpeed, true));
         this.targetSelector.addGoal(1,
         new net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal<>(this, Player.class, true));
         }

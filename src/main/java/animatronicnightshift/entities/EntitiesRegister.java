@@ -40,7 +40,7 @@ public class EntitiesRegister {
 
     public static final RegistryObject<EntityType<Foxy>> FOXY =
             ENTITY_TYPES.register("foxy", () -> EntityType.Builder.of(Foxy::new, MobCategory.MONSTER)
-                    .sized(0.8f, 1.4f)
+                    .sized(0.8f, 2.5f)
                     .build("foxy"));
 
     public static void register(IEventBus eventBus) {
