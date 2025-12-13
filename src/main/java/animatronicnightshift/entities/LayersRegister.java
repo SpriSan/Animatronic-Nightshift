@@ -25,6 +25,9 @@ public class LayersRegister {
     public static final ModelLayerLocation FOXY_LAYER =
             new ModelLayerLocation(new ResourceLocation(AnimatronicNightshift.MODID, "foxy"), "main");
 
-        public static final ModelLayerLocation CAMERA_LAYER =
-                new ModelLayerLocation(new ResourceLocation(AnimatronicNightshift.MODID, "camera"), "main");          
+    public static final ModelLayerLocation CAMERA_LAYER =
+            new ModelLayerLocation(new ResourceLocation(AnimatronicNightshift.MODID, "camera"), "main");
+
+    public static final ModelLayerLocation FREDDY_MASK_LAYER =
+            new ModelLayerLocation(new ResourceLocation(AnimatronicNightshift.MODID, "freddy_mask"), "main");
 }

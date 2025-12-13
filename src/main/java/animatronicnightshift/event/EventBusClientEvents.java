@@ -8,6 +8,7 @@ import animatronicnightshift.entities.LayersRegister;
 import animatronicnightshift.entities.Bonnie.ModelBonnie;
 import animatronicnightshift.entities.Chica.ModelChica;
 import animatronicnightshift.entities.FreddyFazbear.ModelFreddyFazbear;
+import animatronicnightshift.items.freddymask.ModelFreddyMask;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HorseModel;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
@@ -29,6 +30,7 @@ public class EventBusClientEvents {
         event.registerLayerDefinition(LayersRegister.CAMERA_LAYER, ModelCamera::createBodyLayer);
         event.registerLayerDefinition(LayersRegister.GOLDEN_FREDDY_LAYER, ModelGoldenFreddy::createBodyLayer);
         event.registerLayerDefinition(LayersRegister.FOXY_LAYER, ModelFoxy::createBodyLayer);
+        event.registerLayerDefinition(LayersRegister.FREDDY_MASK_LAYER, ModelFreddyMask::createBodyLayer);
 
     }
 }

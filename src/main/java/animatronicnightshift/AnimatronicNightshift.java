@@ -2,6 +2,7 @@ package animatronicnightshift;
 
 import animatronicnightshift.entities.Foxy.FoxyRenderer;
 import animatronicnightshift.entities.GoldenFreddy.GoldenFreddyRenderer;
+import animatronicnightshift.utils.CreativeTabs;
 import com.mojang.logging.LogUtils;
 
 import animatronicnightshift.blocks.BlockEntityRegister;
@@ -40,6 +41,7 @@ public class AnimatronicNightshift
         BlocksRegister.register(modEventBus);
         ItemsRegister.register(modEventBus);
         BlockEntityRegister.BLOCK_ENTITIES.register(modEventBus);
+        CreativeTabs.CREATIVE_TABS.register(modEventBus);
 
 
         MinecraftForge.EVENT_BUS.register(this);

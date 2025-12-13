@@ -1,0 +1,15 @@
+{
+  "item.animatronicnightshift.freddy_fazbear_spawn_egg": "Freddy Fazbear Spawn Egg",
+  "item.animatronicnightshift.bonnie_spawn_egg": "Bonnie the Bunny Spawn Egg",
+  "item.animatronicnightshift.chica_spawn_egg": "Chica the Hen Spawn Egg",
+  "item.animatronicnightshift.foxy_spawn_egg": "Foxy the Pirate Fox Spawn Egg",
+  "item.animatronicnightshift.golden_freddy_spawn_egg": "Golden Freddy Spawn Egg",
+
+  "item.animatronicnightshift.monitor": "Camera Monitor",
+  "item.animatronicnightshift.freddy_mask": "Freddy's Mask",
+  "block.animatronicnightshift.camera": "Security Camera",
+  "block.animatronicnightshift.floor_tiles": "Floor tiles",
+  "block.animatronicnightshift.cupcake": "Chica's Cupcake",
+
+  "creativetab.animatronicnightshift.tab" : "Animatronic Nightshift"
+}

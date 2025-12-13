@@ -15,12 +15,8 @@ import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.Pose;
 import net.minecraft.world.entity.ai.attributes.AttributeSupplier;
 import net.minecraft.world.entity.ai.attributes.Attributes;
-import net.minecraft.world.entity.ai.goal.FloatGoal;
-import net.minecraft.world.entity.ai.goal.LookAtPlayerGoal;
-import net.minecraft.world.entity.ai.goal.MeleeAttackGoal;
-import net.minecraft.world.entity.ai.goal.RandomLookAroundGoal;
-import net.minecraft.world.entity.ai.goal.TemptGoal;
-import net.minecraft.world.entity.ai.goal.WaterAvoidingRandomStrollGoal;
+import net.minecraft.world.entity.ai.goal.*;
+import net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal;
 import net.minecraft.world.entity.animal.Animal;
 import net.minecraft.world.entity.monster.Monster;
 import net.minecraft.world.entity.monster.Spider;
@@ -121,9 +117,13 @@ import net.minecraft.world.level.Level;
 
         @Override
         protected void registerGoals() {
-            this.goalSelector.addGoal(1, new FloatGoal(this));
+            this.goalSelector.addGoal(0, new FloatGoal(this));
             this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 3f));
-            this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+            this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+            this.goalSelector.addGoal(7, new RandomStrollGoal(this, 1.0D));
+            this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+            this.goalSelector.addGoal(2, new AnimatronicAttackGoal(this, attackSpeed, true));
+            this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
 
         }
 
@@ -158,14 +158,13 @@ import net.minecraft.world.level.Level;
         private void enableGoals() {
             this.goalsEnabled = true;
 
-            this.goalSelector.addGoal(1, new FloatGoal(this));
+            this.goalSelector.addGoal(0, new FloatGoal(this));
             this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 3f));
-            this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
-
-
-        this.goalSelector.addGoal(2, new AnimatronicAttackGoal(this, attackSpeed, true));
-        this.targetSelector.addGoal(1,
-        new net.minecraft.world.entity.ai.goal.target.NearestAttackableTargetGoal<>(this, Player.class, true));
+            this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
+            this.goalSelector.addGoal(7, new RandomStrollGoal(this, 1.0D));
+            this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0D));
+            this.goalSelector.addGoal(2, new AnimatronicAttackGoal(this, attackSpeed, true));
+            this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
         }
             
         @Override

@@ -1,5 +1,8 @@
 {
   "variants": {
-    "": { "model": "animatronicnightshift:block/cupcake" }
+    "facing=north": { "model": "animatronicnightshift:block/cupcake" },
+    "facing=south": { "model": "animatronicnightshift:block/cupcake", "y": 180 },
+    "facing=east": { "model": "animatronicnightshift:block/cupcake", "y": 90 },
+    "facing=west": { "model": "animatronicnightshift:block/cupcake", "y": 270 }
   }
 }
