@@ -110,8 +110,8 @@ public class JumpscareOverlay {
         drawEntityOnScreen(
                 gfx,
                 mc.getWindow().getGuiScaledWidth() / 2,
-                mc.getWindow().getGuiScaledHeight() / 2 + 640,
-                300,
+                mc.getWindow().getGuiScaledHeight() / 2 + 840,
+                400,
                 self.fake,
                 self.source,
                 self.partialTick

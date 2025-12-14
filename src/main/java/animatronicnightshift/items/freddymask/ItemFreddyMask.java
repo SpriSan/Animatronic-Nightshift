@@ -1,5 +1,6 @@
 package animatronicnightshift.items.freddymask;
 
+import animatronicnightshift.event.FreddyMaskRenderer;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -17,6 +18,12 @@ public class ItemFreddyMask extends Item {
     public InteractionResultHolder<ItemStack> use(Level level, Player player, InteractionHand hand) {
         ItemStack stack = player.getItemInHand(hand);
         player.startUsingItem(hand);
+
+        if (level.isClientSide) {
+            // Activer l'overlay côté client
+            FreddyMaskRenderer.showOverlay = true;
+        }
+
         return InteractionResultHolder.consume(stack);
     }
 

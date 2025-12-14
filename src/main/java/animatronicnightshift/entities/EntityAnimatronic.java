@@ -170,7 +170,7 @@ public class EntityAnimatronic extends Monster {
 
             JumpscareOverlay overlay = JumpscareOverlay.get();
 
-            if (this.distanceTo(player) < 1.8F && !player.isCreative() && night && !overlay.isActive()) {
+            if (this.distanceTo(player) < 1.2F && !player.isCreative() && night && !overlay.isActive() && !ItemFreddyMask.isPlayerUsingMask(player) && isMaskVulnerable()) {
                 overlay.trigger(this);
             }
         } else {
@@ -178,7 +178,7 @@ public class EntityAnimatronic extends Monster {
             Player nearestPlayer = this.level().getNearestPlayer(this, 1.8D);
 
             if (nearestPlayer != null && !nearestPlayer.isDeadOrDying() &&
-                    !nearestPlayer.isCreative() && night) {
+                    !nearestPlayer.isCreative() && night && !ItemFreddyMask.isPlayerUsingMask(nearestPlayer) && isMaskVulnerable()) {
 
 
                 nearestPlayer.addEffect(new MobEffectInstance(

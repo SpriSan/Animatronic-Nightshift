@@ -8,11 +8,13 @@ import animatronicnightshift.entities.LayersRegister;
 import animatronicnightshift.entities.Bonnie.ModelBonnie;
 import animatronicnightshift.entities.Chica.ModelChica;
 import animatronicnightshift.entities.FreddyFazbear.ModelFreddyFazbear;
+import animatronicnightshift.items.freddymask.ItemFreddyMask;
 import animatronicnightshift.items.freddymask.ModelFreddyMask;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.model.HorseModel;
 import net.minecraft.client.model.geom.builders.CubeDeformation;
 import net.minecraft.client.player.LocalPlayer;
+import net.minecraft.world.item.ItemStack;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
 import net.minecraftforge.event.TickEvent;
@@ -33,4 +35,5 @@ public class EventBusClientEvents {
         event.registerLayerDefinition(LayersRegister.FREDDY_MASK_LAYER, ModelFreddyMask::createBodyLayer);
 
     }
+
 }

@@ -7,6 +7,7 @@ import animatronicnightshift.entities.Chica.Chica;
 import animatronicnightshift.entities.Foxy.Foxy;
 import animatronicnightshift.entities.FreddyFazbear.FreddyFazbear;
 import animatronicnightshift.entities.GoldenFreddy.GoldenFreddy;
+import animatronicnightshift.items.freddymask.ItemFreddyMask;
 import net.minecraft.client.Minecraft;
 import net.minecraft.server.MinecraftServer;
 import net.minecraft.server.level.ServerLevel;
