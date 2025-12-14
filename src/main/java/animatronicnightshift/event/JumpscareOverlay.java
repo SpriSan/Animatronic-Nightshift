@@ -1,5 +1,9 @@
 package animatronicnightshift.event;
 
+import animatronicnightshift.utils.SoundsRegister;
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
+import net.minecraft.sounds.SoundSource;
+import net.minecraft.world.level.Level;
 import org.joml.Quaternionf;
 import com.mojang.blaze3d.vertex.PoseStack;
 import animatronicnightshift.AnimatronicNightshift;
@@ -54,6 +58,15 @@ public class JumpscareOverlay {
         this.startTime = System.nanoTime();
         this.lastTriggerTime = now;
 
+        Minecraft.getInstance().getSoundManager().play(
+                SimpleSoundInstance.forUI(
+                        SoundsRegister.FNAF1_JUMPSCARE.get(),
+                        1.0F,
+                        1.0F
+                )
+        );
+
+
     }
 
     public void stop() {
@@ -64,6 +77,14 @@ public class JumpscareOverlay {
             this.fake.discard();
             this.fake = null;
         }
+
+        Minecraft.getInstance().getSoundManager().stop(
+                SimpleSoundInstance.forUI(
+                        SoundsRegister.FNAF1_JUMPSCARE.get(),
+                        1.0F,
+                        1.0F
+                )
+        );
     }
 
     @SubscribeEvent

@@ -1,7 +1,9 @@
 package animatronicnightshift.items;
 
 import animatronicnightshift.screens.ScreenMonitor;
+import animatronicnightshift.utils.SoundsRegister;
 import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
@@ -24,6 +26,15 @@ public class ItemCameraMonitor extends Item {
         if (world.isClientSide) {
             Minecraft.getInstance().setScreen(new ScreenMonitor(Component.literal("Camera Monitor")));
         }
+
+        Minecraft.getInstance().getSoundManager().play(
+                SimpleSoundInstance.forUI(
+                        SoundsRegister.MONITOR.get(),
+                        1.0F,
+                        1.0F
+                )
+        );
+
 
         return InteractionResultHolder.sidedSuccess(stack, world.isClientSide());
     }

@@ -5,8 +5,10 @@ import animatronicnightshift.event.ClientJumpscareData;
 import animatronicnightshift.event.ClientJumpscareManager;
 import animatronicnightshift.event.JumpscareOverlay;
 import animatronicnightshift.items.freddymask.ItemFreddyMask;
+import animatronicnightshift.utils.SoundsRegister;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
 import net.minecraft.world.effect.MobEffects;
@@ -172,6 +174,7 @@ public class EntityAnimatronic extends Monster {
 
             if (this.distanceTo(player) < 1.2F && !player.isCreative() && night && !overlay.isActive() && !ItemFreddyMask.isPlayerUsingMask(player) && isMaskVulnerable()) {
                 overlay.trigger(this);
+
             }
         } else {
 

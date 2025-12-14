@@ -5,6 +5,7 @@ import animatronicnightshift.entities.GoldenFreddy.GoldenFreddyRenderer;
 import animatronicnightshift.event.FreddyMaskRenderer;
 import animatronicnightshift.items.freddymask.ItemFreddyMask;
 import animatronicnightshift.utils.CreativeTabs;
+import animatronicnightshift.utils.SoundsRegister;
 import com.mojang.logging.LogUtils;
 
 import animatronicnightshift.blocks.BlockEntityRegister;
@@ -47,6 +48,7 @@ public class AnimatronicNightshift
         ItemsRegister.register(modEventBus);
         BlockEntityRegister.BLOCK_ENTITIES.register(modEventBus);
         CreativeTabs.CREATIVE_TABS.register(modEventBus);
+        SoundsRegister.register(modEventBus);
 
 
         MinecraftForge.EVENT_BUS.register(this);

@@ -1,0 +1,33 @@
+{
+      "jumpscare1" : {
+      "category": "mob",
+      "subtitle": "sounds.animatronicnightshift.jumpscare1",
+      "sounds" : [
+          "animatronicnightshift:jumpscare1"
+      ]
+    },
+
+    "mask_put" : {
+      "category": "player",
+      "subtitle": "sounds.animatronicnightshift.mask_put",
+      "sounds" : [
+        "animatronicnightshift:mask1"
+      ]
+    },
+
+    "mask_remove" : {
+      "category": "player",
+      "subtitle": "sounds.animatronicnightshift.mask_remove",
+      "sounds" : [
+        "animatronicnightshift:mask2"
+      ]
+    },
+
+  "monitor" : {
+    "category": "player",
+    "subtitle": "sounds.animatronicnightshift.monitor",
+    "sounds" : [
+      "animatronicnightshift:monitor"
+    ]
+  }
+}

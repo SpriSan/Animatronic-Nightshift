@@ -1,6 +1,10 @@
 package animatronicnightshift.items.freddymask;
 
 import animatronicnightshift.event.FreddyMaskRenderer;
+import animatronicnightshift.utils.SoundsRegister;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.resources.sounds.SimpleSoundInstance;
+import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -24,11 +28,27 @@ public class ItemFreddyMask extends Item {
             FreddyMaskRenderer.showOverlay = true;
         }
 
+        Minecraft.getInstance().getSoundManager().play(
+                SimpleSoundInstance.forUI(
+                        SoundsRegister.MASK_PUT.get(),
+                        1.0F,
+                        1.0F
+                )
+        );
+
         return InteractionResultHolder.consume(stack);
     }
 
     @Override
     public void releaseUsing(ItemStack stack, Level level, net.minecraft.world.entity.LivingEntity entity, int timeLeft) {
+
+        Minecraft.getInstance().getSoundManager().play(
+                SimpleSoundInstance.forUI(
+                        SoundsRegister.MASK_REMOVE.get(),
+                        1.0F,
+                        1.0F
+                )
+        );
 
     }
 
