@@ -11,4 +11,10 @@ public class Foxy extends EntityAnimatronic {
     public Foxy(EntityType<? extends EntityAnimatronic> type, Level level) {
         super(type, level);
     }
+
+    @Override
+    public boolean isMaskVulnerable() {
+        return false;
+    }
+
 }

@@ -29,4 +29,14 @@ public class ItemFreddyMask extends Item {
     public int getUseDuration(ItemStack stack) {
         return 72000;
     }
+
+    public static boolean isFreddyMask(ItemStack stack) {
+        return stack.getItem() instanceof ItemFreddyMask;
+    }
+
+    public static boolean isPlayerUsingMask(Player player) {
+        if (player == null) return false;
+
+        return player.isUsingItem() && isFreddyMask(player.getUseItem());
+    }
 }
