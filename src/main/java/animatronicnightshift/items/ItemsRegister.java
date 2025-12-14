@@ -33,7 +33,7 @@ public class ItemsRegister {
         public static final RegistryObject<SpawnEggItem> CHICA_SPAWN_EGG = ITEMS.register("chica_spawn_egg",
                 () -> new ForgeSpawnEggItem(EntitiesRegister.CHICA, 0x89851B, 0x767321, new Item.Properties()));
 
-    public static final RegistryObject<SpawnEggItem> GOLDEN_FREDDY_SPAWN_EGG = ITEMS.register("golden_freddy_spawn_egg",
+        public static final RegistryObject<SpawnEggItem> GOLDEN_FREDDY_SPAWN_EGG = ITEMS.register("golden_freddy_spawn_egg",
             () -> new ForgeSpawnEggItem(EntitiesRegister.GOLDEN_FREDDY, 0xC1AA00, 0x998500, new Item.Properties()));
 
         public static final RegistryObject<SpawnEggItem> FOXY_SPAWN_EGG = ITEMS.register("foxy_spawn_egg",

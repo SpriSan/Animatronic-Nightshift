@@ -197,6 +197,7 @@ public class ModelFoxy<T extends Foxy> extends HierarchicalModel<T> {
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.root().getAllParts().forEach(ModelPart::resetPose);
         this.animate(((Foxy) entity).idleAnimationState, FoxyAnimations.day, ageInTicks, 1f);
+        this.animate(((Foxy) entity).crawlingAnimationState, FreddyFazbearAnimation.crawl, ageInTicks, 1f);
 
         this.applyHeadRotation(netHeadYaw, headPitch, ageInTicks);
 
