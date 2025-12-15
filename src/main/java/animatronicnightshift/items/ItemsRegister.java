@@ -20,9 +20,10 @@ public class ItemsRegister {
     public static final DeferredRegister<Item> ITEMS = DeferredRegister.create(ForgeRegistries.ITEMS, AnimatronicNightshift.MODID);
 
         public static final RegistryObject<Item> MONITOR = ITEMS.register("monitor",
-                    () -> new ItemCameraMonitor(new Item.Properties()));
+                () -> new ItemCameraMonitor(new Item.Properties().stacksTo(1)));
 
-        public static final RegistryObject<Item> FREDDY_MASK = ITEMS.register("freddy_mask", () -> new ItemFreddyMask(new Item.Properties()));
+        public static final RegistryObject<Item> FREDDY_MASK = ITEMS.register("freddy_mask",
+                () -> new ItemFreddyMask(new Item.Properties().stacksTo(1)));
 
         public static final RegistryObject<SpawnEggItem> FREDDY_FAZBEAR_SPAWN_EGG = ITEMS.register("freddy_fazbear_spawn_egg",
                 () -> new ForgeSpawnEggItem(EntitiesRegister.FREDDY, 0x63340B, 0x48280C, new Item.Properties()));
@@ -34,7 +35,7 @@ public class ItemsRegister {
                 () -> new ForgeSpawnEggItem(EntitiesRegister.CHICA, 0x89851B, 0x767321, new Item.Properties()));
 
         public static final RegistryObject<SpawnEggItem> GOLDEN_FREDDY_SPAWN_EGG = ITEMS.register("golden_freddy_spawn_egg",
-            () -> new ForgeSpawnEggItem(EntitiesRegister.GOLDEN_FREDDY, 0xC1AA00, 0x998500, new Item.Properties()));
+                () -> new ForgeSpawnEggItem(EntitiesRegister.GOLDEN_FREDDY, 0xC1AA00, 0x998500, new Item.Properties()));
 
         public static final RegistryObject<SpawnEggItem> FOXY_SPAWN_EGG = ITEMS.register("foxy_spawn_egg",
                 () -> new ForgeSpawnEggItem(EntitiesRegister.FOXY, 0xA1251D, 0xFF8765, new Item.Properties()));
