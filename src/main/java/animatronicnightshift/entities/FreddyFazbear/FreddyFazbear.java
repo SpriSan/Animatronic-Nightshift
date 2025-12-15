@@ -1,6 +1,9 @@
 package animatronicnightshift.entities.FreddyFazbear;
 
 import animatronicnightshift.entities.EntityAnimatronic;
+import animatronicnightshift.utils.SoundsRegister;
+import net.minecraft.sounds.SoundEvent;
+import net.minecraft.sounds.SoundEvents;
 import net.minecraft.world.entity.AnimationState;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
@@ -24,4 +27,7 @@ public class FreddyFazbear extends EntityAnimatronic {
             super(type, level);
         }
 
+        protected SoundEvent getAmbientSound() {
+        return SoundsRegister.FREDDY_LAUGH.get();
+    }
 }

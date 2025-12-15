@@ -42,7 +42,7 @@ public class ItemFreddyMask extends Item {
     @Override
     public void releaseUsing(ItemStack stack, Level level, net.minecraft.world.entity.LivingEntity entity, int timeLeft) {
 
-        Minecraft.getInstance().getSoundManager().play(
+        Minecraft.getInstance().getSoundManager().play(         //cause des crash
                 SimpleSoundInstance.forUI(
                         SoundsRegister.MASK_REMOVE.get(),
                         1.0F,

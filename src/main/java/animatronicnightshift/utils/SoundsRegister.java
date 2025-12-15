@@ -22,6 +22,15 @@ public class SoundsRegister {
     public static final RegistryObject<SoundEvent> MONITOR = SOUND_EVENTS.register("monitor",
             () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("animatronicnightshift", "monitor")));
 
+    public static final RegistryObject<SoundEvent> FOXY_SING = SOUND_EVENTS.register("foxy_sing",
+            () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("animatronicnightshift", "foxy_sing")));
+
+    public static final RegistryObject<SoundEvent> BREATH = SOUND_EVENTS.register("breath",
+            () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("animatronicnightshift", "breath")));
+
+    public static final RegistryObject<SoundEvent> FREDDY_LAUGH = SOUND_EVENTS.register("freddy_laugh",
+            () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("animatronicnightshift", "freddy_laugh")));
+
     public static void register(IEventBus eventBus) {
         SOUND_EVENTS.register(eventBus);
     }

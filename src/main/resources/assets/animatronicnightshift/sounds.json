@@ -29,5 +29,31 @@
     "sounds" : [
       "animatronicnightshift:monitor"
     ]
+  },
+      "breath" : {
+      "category": "mob",
+      "subtitle": "sounds.animatronicnightshift.breath",
+      "sounds" : [
+          "animatronicnightshift:breath1",
+          "animatronicnightshift:breath2",
+          "animatronicnightshift:breath3",
+          "animatronicnightshift:breath4"        
+    ]
+  },
+      "freddy_laugh" : {
+      "category": "mob",
+      "subtitle": "sounds.animatronicnightshift.freddy_laugh",
+      "sounds" : [
+          "animatronicnightshift:freddy_laugh1",
+          "animatronicnightshift:freddy_laugh2",
+          "animatronicnightshift:freddy_laugh3" 
+    ]
+  },
+      "foxy_sing" : {
+      "category": "mob",
+      "subtitle": "sounds.animatronicnightshift.foxy_sing",
+      "sounds" : [
+          "animatronicnightshift:foxy_sing"
+    ]
   }
 }

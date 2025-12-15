@@ -8,6 +8,7 @@ import animatronicnightshift.items.freddymask.ItemFreddyMask;
 import animatronicnightshift.utils.SoundsRegister;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.sounds.SoundSource;
 import net.minecraft.world.effect.MobEffect;
 import net.minecraft.world.effect.MobEffectInstance;
@@ -53,7 +54,7 @@ public class EntityAnimatronic extends Monster {
 
     double attackSpeed = 1.2D;
 
-    private boolean isNightTime() {
+    protected boolean isNightTime() {
         long time = this.level().getDayTime() % 24000L;
         return time >= 13000L && time <= 23000L;
     }
@@ -172,10 +173,11 @@ public class EntityAnimatronic extends Monster {
 
             JumpscareOverlay overlay = JumpscareOverlay.get();
 
-            if (this.distanceTo(player) < 1.2F && !player.isCreative() && night && !overlay.isActive() && !ItemFreddyMask.isPlayerUsingMask(player) && isMaskVulnerable()) {
-                overlay.trigger(this);
+            if (this.distanceTo(player) < 1.2F && !player.isCreative() && night && !overlay.isActive() && !ItemFreddyMask.isPlayerUsingMask(player)) {
 
+                    overlay.trigger(this);
             }
+
         } else {
 
             Player nearestPlayer = this.level().getNearestPlayer(this, 1.8D);
@@ -352,6 +354,31 @@ public class EntityAnimatronic extends Monster {
         this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
     }
 
+    @Override
+    protected SoundEvent getAmbientSound() {
+        if (!isNightTime()) {
+            return null;
+        }
+        return super.getAmbientSound();
+    }
+
+    @Override
+    public int getAmbientSoundInterval() {
+
+        if (!isNightTime()) {
+            return Integer.MAX_VALUE;
+        }
+
+        return 200;
+    }
+
+    @Override
+    public void playAmbientSound() {
+        if (!isNightTime()) {
+            return;
+        }
+        super.playAmbientSound();
+    }
 
     @Override
     public void aiStep() {
