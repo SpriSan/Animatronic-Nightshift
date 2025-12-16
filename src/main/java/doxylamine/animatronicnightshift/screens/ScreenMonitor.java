@@ -132,6 +132,10 @@ public class ScreenMonitor extends Screen {
         ).bounds(x, y, buttonWidth, buttonHeight).build());
     }
 
+    public void drawRect() {
+
+    }
+
     @Override
     public boolean isPauseScreen() {
         return false;
