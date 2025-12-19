@@ -44,20 +44,20 @@ public class FreddyMaskHandler {
 
         poseStack.pushPose();
 
-        poseStack.translate(0, 1.5, 0);
+        poseStack.translate(0, 1.4, 0);
 
 
         poseStack.mulPose(Axis.YP.rotationDegrees(-player.yHeadRot));
         poseStack.mulPose(Axis.XP.rotationDegrees(player.getXRot()));
 
 
-        poseStack.translate(0, 0.95, 0);
+        poseStack.translate(0, 1.1, 0);
 
 
         poseStack.mulPose(Axis.XP.rotationDegrees(180));
 
 
-        poseStack.scale(1.05F, 1.05F, 1.05F);
+        poseStack.scale(1.1F, 1.1F, 1.1F);
 
         var vertexConsumer = buffer.getBuffer(RenderType.entityCutoutNoCull(TEXTURE));
         model.renderToBuffer(poseStack, vertexConsumer, packedLight, OverlayTexture.NO_OVERLAY, 1.0F, 1.0F, 1.0F, 1.0F);

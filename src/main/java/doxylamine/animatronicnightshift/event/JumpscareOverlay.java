@@ -163,7 +163,7 @@ public class JumpscareOverlay {
         dispatcher.render(fake, 0.0D, 0.0D, 0.0D, 0.0F, partialTick, pose, buffer, 15728880);
 
         buffer.endBatch();
-        dispatcher.setRenderShadow(true); // Restaurer l'état
+        dispatcher.setRenderShadow(true);
 
         pose.popPose();
     }

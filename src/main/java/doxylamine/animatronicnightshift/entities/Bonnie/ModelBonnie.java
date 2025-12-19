@@ -16,44 +16,50 @@ import net.minecraft.util.Mth;
 
 public class ModelBonnie<T extends Bonnie> extends HierarchicalModel<T> {
 	// This layer location should be baked with EntityRendererProvider.Context in the entity renderer and passed into this model's constructor
-	private final ModelPart bone7;
-	private final ModelPart corps;
-	private final ModelPart brasdroit;
-	private final ModelPart bone10;
-	private final ModelPart bone12;
-	private final ModelPart bone2;
-	private final ModelPart brasgauche;
-	private final ModelPart bone23;
-	private final ModelPart bone24;
-	private final ModelPart bone25;
-	private final ModelPart tete;
-	private final ModelPart Machoire;
-	private final ModelPart bone4;
-	private final ModelPart bone6;
-	private final ModelPart oreilledroite;
-	private final ModelPart bone21;
-	private final ModelPart jambedroite;
-	private final ModelPart jambegauche;
+    private final ModelPart bone7;
+    private final ModelPart corps;
+    private final ModelPart brasdroit;
+    private final ModelPart bone10;
+    private final ModelPart bone12;
+    private final ModelPart bone2;
+    private final ModelPart brasgauche;
+    private final ModelPart bone23;
+    private final ModelPart bone24;
+    private final ModelPart bone25;
+    private final ModelPart tete;
+    private final ModelPart Machoire;
+    private final ModelPart bone4;
+    private final ModelPart bone6;
+    private final ModelPart oreilledroite;
+    private final ModelPart bone21;
+    private final ModelPart bone5;
+    private final ModelPart jambegauche;
+    private final ModelPart bone3;
+    private final ModelPart jambedroite;
+    private final ModelPart bone;
 
 	public ModelBonnie(ModelPart root) {
-		this.bone7 = root.getChild("bone7");
-		this.corps = this.bone7.getChild("corps");
-		this.brasdroit = this.corps.getChild("brasdroit");
-		this.bone10 = this.brasdroit.getChild("bone10");
-		this.bone12 = this.bone10.getChild("bone12");
-		this.bone2 = this.bone12.getChild("bone2");
-		this.brasgauche = this.corps.getChild("brasgauche");
-		this.bone23 = this.brasgauche.getChild("bone23");
-		this.bone24 = this.bone23.getChild("bone24");
-		this.bone25 = this.bone24.getChild("bone25");
-		this.tete = this.corps.getChild("tete");
-		this.Machoire = this.tete.getChild("Machoire");
-		this.bone4 = this.tete.getChild("bone4");
-		this.bone6 = this.tete.getChild("bone6");
-		this.oreilledroite = this.tete.getChild("oreilledroite");
-		this.bone21 = this.tete.getChild("bone21");
-		this.jambedroite = this.bone7.getChild("jambedroite");
-		this.jambegauche = this.bone7.getChild("jambegauche");
+        this.bone7 = root.getChild("bone7");
+        this.corps = this.bone7.getChild("corps");
+        this.brasdroit = this.corps.getChild("brasdroit");
+        this.bone10 = this.brasdroit.getChild("bone10");
+        this.bone12 = this.bone10.getChild("bone12");
+        this.bone2 = this.bone12.getChild("bone2");
+        this.brasgauche = this.corps.getChild("brasgauche");
+        this.bone23 = this.brasgauche.getChild("bone23");
+        this.bone24 = this.bone23.getChild("bone24");
+        this.bone25 = this.bone24.getChild("bone25");
+        this.tete = this.corps.getChild("tete");
+        this.Machoire = this.tete.getChild("Machoire");
+        this.bone4 = this.tete.getChild("bone4");
+        this.bone6 = this.tete.getChild("bone6");
+        this.oreilledroite = this.tete.getChild("oreilledroite");
+        this.bone21 = this.tete.getChild("bone21");
+        this.bone5 = this.corps.getChild("bone5");
+        this.jambegauche = this.bone7.getChild("jambegauche");
+        this.bone3 = this.jambegauche.getChild("bone3");
+        this.jambedroite = this.bone7.getChild("jambedroite");
+        this.bone = this.jambedroite.getChild("bone");
 	}
 
     public static LayerDefinition createBodyLayer() {
@@ -134,6 +140,15 @@ public class ModelBonnie<T extends Bonnie> extends HierarchicalModel<T> {
 
         PartDefinition cube_r12 = bone21.addOrReplaceChild("cube_r12", CubeListBuilder.create().texOffs(26, 82).mirror().addBox(-2.0F, -4.0F, -1.0F, 3.0F, 4.0F, 1.0F, new CubeDeformation(0.0F)).mirror(false), PartPose.offsetAndRotation(0.3532F, -7.9846F, 0.5F, 0.48F, 0.0F, 0.0F));
 
+        PartDefinition bone5 = corps.addOrReplaceChild("bone5", CubeListBuilder.create().texOffs(0, 102).addBox(0.4375F, -0.4375F, -0.5F, 12.0F, 2.0F, 1.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 106).addBox(-11.5625F, -2.4375F, -0.5F, 12.0F, 6.0F, 1.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 119).addBox(-12.5625F, -4.4375F, -0.5F, 1.0F, 8.0F, 1.0F, new CubeDeformation(0.0F))
+                .texOffs(16, 114).addBox(-11.5625F, 3.5625F, -0.5F, 9.0F, 1.0F, 1.0F, new CubeDeformation(0.0F))
+                .texOffs(0, 117).addBox(-11.5625F, -3.4375F, -0.5F, 10.0F, 1.0F, 1.0F, new CubeDeformation(0.0F))
+                .texOffs(1, 114).addBox(-11.5625F, -4.4375F, -0.5F, 6.0F, 1.0F, 1.0F, new CubeDeformation(0.0F))
+                .texOffs(10, 119).addBox(12.4375F, -0.9375F, -0.5F, 3.0F, 3.0F, 1.0F, new CubeDeformation(0.0F))
+                .texOffs(4, 119).addBox(15.4375F, -0.4375F, -0.5F, 2.0F, 2.0F, 1.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-2.4375F, -1.5625F, -6.0F, 0.0F, 0.2182F, -0.48F));
+
         PartDefinition jambegauche = bone7.addOrReplaceChild("jambegauche", CubeListBuilder.create(), PartPose.offsetAndRotation(2.5F, -14.5F, -1.75F, 0.1282F, 0.0205F, 0.0065F));
 
         PartDefinition cube_r13 = jambegauche.addOrReplaceChild("cube_r13", CubeListBuilder.create().texOffs(60, 72).addBox(1.0F, 7.0F, -1.0F, 2.0F, 1.0F, 2.0F, new CubeDeformation(0.0F)), PartPose.offsetAndRotation(-1.0F, 1.0F, 0.5F, -0.1309F, -0.2182F, 0.0F));
@@ -181,6 +196,7 @@ public class ModelBonnie<T extends Bonnie> extends HierarchicalModel<T> {
 	@Override
 	public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
 		this.root().getAllParts().forEach(ModelPart::resetPose);
+        this.animate(((Bonnie) entity).idleAnimationState, BonnieAnimations.guitar, ageInTicks, 1f);
 		this.animate(((Bonnie) entity).jumpscareAnimationState, FreddyFazbearAnimation.jumpscare, ageInTicks, 1f);
         this.animate(((Bonnie) entity).crawlingAnimationState, FreddyFazbearAnimation.crawl, ageInTicks, 1f);
 

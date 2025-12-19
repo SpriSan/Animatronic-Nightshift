@@ -10,6 +10,21 @@ public class Bonnie extends EntityAnimatronic {
 
     public Bonnie(EntityType<? extends Bonnie> type, Level level) { super(type, level); }
 
+    @Override
+    protected void setupAnimationStates() {
+        if (!this.level().isDay()) {
+            idleAnimationState.stop();
+            return;
+        }
+
+        if (idleAnimationTimeout <= 0) {
+            idleAnimationTimeout = 87;
+            idleAnimationState.start(this.tickCount);
+        } else {
+            idleAnimationTimeout--;
+        }
+    }
+
     protected SoundEvent getAmbientSound() {
         return SoundsRegister.BREATH.get();
     }

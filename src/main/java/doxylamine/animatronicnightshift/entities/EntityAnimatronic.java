@@ -25,15 +25,16 @@ import net.minecraft.world.phys.Vec3;
 
 public class EntityAnimatronic extends Monster {
 
-    private boolean goalsEnabled = true;
+    private boolean goalsEnabled = false; // Changé à false par défaut
     private boolean isCrawling = false;
+    private boolean initializedGoals = false; // Nouveau flag pour vérifier l'initialisation
 
     public EntityAnimatronic(EntityType<? extends EntityAnimatronic> type, Level level) {
         super(type, level);
     }
 
     public final AnimationState idleAnimationState = new AnimationState();
-    private int idleAnimationTimeout = 0;
+    public int idleAnimationTimeout = 0;
 
     public final AnimationState jumpscareAnimationState = new AnimationState();
     public final AnimationState crawlingAnimationState = new AnimationState();
@@ -42,7 +43,7 @@ public class EntityAnimatronic extends Monster {
 
     protected boolean isNightTime() {
         long time = this.level().getDayTime() % 24000L;
-        return time >= 13000L && time <= 23000L;
+        return time >= 15000L && time <= 23000L;
     }
 
     @Override
@@ -54,27 +55,23 @@ public class EntityAnimatronic extends Monster {
         return true;
     }
 
-    // Vérifie si l'animatronic doit ramper
     private boolean shouldCrawl() {
         if (!isNightTime()) return false;
 
         BlockPos pos = this.blockPosition();
 
-        // 1. VÉRIFICATION IMMÉDIATE : Est-ce que je suis DÉJÀ dans un conduit ?
-        BlockPos currentHead = pos.above(1); // Position de la tête si debout
+        BlockPos currentHead = pos.above(1);
         boolean hasBlockAboveNow = !this.level().getBlockState(currentHead).isAir();
 
         if (hasBlockAboveNow) {
-            return true; // Ramper immédiatement si bloqué
+            return true;
         }
 
-        // 2. VÉRIFICATION ANTICIPATIVE : Y a-t-il un conduit devant ?
         if (this.getTarget() != null && this.getTarget().isAlive()) {
             Vec3 targetPos = this.getTarget().position();
             Vec3 currentPos = this.position();
             Vec3 direction = targetPos.subtract(currentPos).normalize();
 
-            // Vérifie plusieurs blocs devant
             for (int distance = 1; distance <= 3; distance++) {
                 BlockPos checkPos = pos.offset(
                         (int)Math.round(direction.x * distance),
@@ -82,26 +79,22 @@ public class EntityAnimatronic extends Monster {
                         (int)Math.round(direction.z * distance)
                 );
 
-                // Conduit = sol solide + espace libre + plafond bas (à 1 ou 2 blocs)
                 boolean groundSolid = !this.level().getBlockState(checkPos.below()).isAir();
                 boolean spaceOpen = this.level().getBlockState(checkPos).isAir();
                 boolean lowCeiling = !this.level().getBlockState(checkPos.above()).isAir();
 
-                // Si on détecte un conduit devant, commencer à ramper
                 if (groundSolid && spaceOpen && lowCeiling) {
                     return true;
                 }
 
-                // Si on trouve un mur plein, arrêter
                 if (!spaceOpen) {
                     break;
                 }
             }
         }
 
-        // 3. VÉRIFICATION DANS LA DIRECTION DU MOUVEMENT (pas seulement vers la cible)
         Vec3 movement = this.getDeltaMovement();
-        if (movement.horizontalDistanceSqr() > 0.001) { // Si l'entité bouge
+        if (movement.horizontalDistanceSqr() > 0.001) {
             Vec3 moveDirection = movement.normalize();
 
             for (int distance = 1; distance <= 2; distance++) {
@@ -131,7 +124,17 @@ public class EntityAnimatronic extends Monster {
 
         boolean night = isNightTime();
 
+        // Initialisation au premier tick
+        if (!initializedGoals) {
+            initializedGoals = true;
+            if (night) {
+                enableGoals();
+            } else {
+                disableGoals();
+            }
+        }
 
+        // Gestion normale après initialisation
         if (night && !goalsEnabled) {
             enableGoals();
         } else if (!night && goalsEnabled) {
@@ -161,12 +164,12 @@ public class EntityAnimatronic extends Monster {
 
             if (this.distanceTo(player) < 1.2F && !player.isCreative() && night && !overlay.isActive() && !ItemFreddyMask.isPlayerUsingMask(player)) {
 
-                    overlay.trigger(this);
+                overlay.trigger(this);
             }
 
         } else {
 
-            Player nearestPlayer = this.level().getNearestPlayer(this, 1.8D);
+            Player nearestPlayer = this.level().getNearestPlayer(this, 1.2D);
 
             if (nearestPlayer != null && !nearestPlayer.isDeadOrDying() &&
                     !nearestPlayer.isCreative() && night && !ItemFreddyMask.isPlayerUsingMask(nearestPlayer) && isMaskVulnerable()) {
@@ -175,13 +178,12 @@ public class EntityAnimatronic extends Monster {
                 nearestPlayer.addEffect(new MobEffectInstance(
                         MobEffects.MOVEMENT_SLOWDOWN,
                         40,
-                        3,
+                        5,
                         false,
                         false,
                         true
                 ));
 
-                // Optionnel : ajouter aussi Blindness pour l'immersion
                 nearestPlayer.addEffect(new MobEffectInstance(
                         MobEffects.BLINDNESS,
                         40,
@@ -205,12 +207,10 @@ public class EntityAnimatronic extends Monster {
             if (!crawlingAnimationState.isStarted()) {
                 crawlingAnimationState.start(this.tickCount);
             }
-            // Arrêter idle si on rampe
             idleAnimationState.stop();
             idleAnimationTimeout = 0;
         } else {
             crawlingAnimationState.stop();
-
 
             if (night) {
                 idleAnimationState.stop();
@@ -246,7 +246,6 @@ public class EntityAnimatronic extends Monster {
 
     @Override
     public float maxUpStep() {
-
         return 0.6F;
     }
 
@@ -254,7 +253,6 @@ public class EntityAnimatronic extends Monster {
     @Override
     protected void pushEntities() {
         if (isCrawling) {
-
             return;
         }
         super.pushEntities();
@@ -266,7 +264,7 @@ public class EntityAnimatronic extends Monster {
         return false;
     }
 
-    private void setupAnimationStates() {
+    protected void setupAnimationStates() {
         if (!this.level().isDay()) {
             idleAnimationState.stop();
             return;
@@ -286,7 +284,6 @@ public class EntityAnimatronic extends Monster {
         if (this.getPose() == Pose.STANDING) {
             f = Math.min(pPartialTick * 6F, 1f);
         } else {
-
             f = Math.min(pPartialTick * 6F, 1f);
         }
 
@@ -295,18 +292,12 @@ public class EntityAnimatronic extends Monster {
 
     @Override
     protected void registerGoals() {
-        this.goalSelector.addGoal(0, new FloatGoal(this));
-        this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 3f));
-        this.goalSelector.addGoal(8, new RandomLookAroundGoal(this));
-        this.goalSelector.addGoal(7, new RandomStrollGoal(this, 1.0D));
-        this.goalSelector.addGoal(8, new WaterAvoidingRandomStrollGoal(this, 1.0D));
-        this.goalSelector.addGoal(2, new AnimatronicAttackGoal(this, attackSpeed, true));
-        this.targetSelector.addGoal(1, new NearestAttackableTargetGoal<>(this, Player.class, true));
+
     }
 
     public static AttributeSupplier.Builder createAttributes() {
         return Monster.createMonsterAttributes()
-                .add(Attributes.MAX_HEALTH, 10D)
+                .add(Attributes.MAX_HEALTH, 35D)
                 .add(Attributes.FOLLOW_RANGE, 24D)
                 .add(Attributes.MOVEMENT_SPEED, 0.20D)
                 .add(Attributes.ATTACK_DAMAGE, 17);
@@ -350,7 +341,6 @@ public class EntityAnimatronic extends Monster {
 
     @Override
     public int getAmbientSoundInterval() {
-
         if (!isNightTime()) {
             return Integer.MAX_VALUE;
         }

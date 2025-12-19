@@ -3,11 +3,13 @@ package doxylamine.animatronicnightshift.entities.Bonnie;
 import com.mojang.blaze3d.vertex.PoseStack;
 
 import doxylamine.animatronicnightshift.AnimatronicNightshift;
+import doxylamine.animatronicnightshift.entities.FreddyFazbear.FreddyFazbear;
 import doxylamine.animatronicnightshift.entities.LayersRegister;
 import net.minecraft.client.renderer.MultiBufferSource;
 import net.minecraft.client.renderer.entity.EntityRendererProvider;
 import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
+import net.minecraft.world.level.Level;
 
 public class BonnieRenderer extends MobRenderer<Bonnie, ModelBonnie<Bonnie>> {
     public BonnieRenderer(EntityRendererProvider.Context pContext) {
@@ -15,9 +17,22 @@ public class BonnieRenderer extends MobRenderer<Bonnie, ModelBonnie<Bonnie>> {
     }
 
     @Override
-    public ResourceLocation getTextureLocation(Bonnie pEntity) {
-        return new ResourceLocation(AnimatronicNightshift.MODID, "textures/entity/bonnie.png");
+    public ResourceLocation getTextureLocation(Bonnie entity) {
+        Level level = entity.level();
+        if (level != null) {
+            long time = level.getDayTime() % 24000L;
+            boolean isNight = time >= 15000 && time <= 23000;
+
+            if (isNight) {
+                return new ResourceLocation(AnimatronicNightshift.MODID,
+                        "textures/entity/bonnie_night.png");
+            }
+        }
+
+        return new ResourceLocation(AnimatronicNightshift.MODID,
+                "textures/entity/bonnie.png");
     }
+
 
     @Override
     public void render(Bonnie pEntity, float pEntityYaw, float pPartialTicks, PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight) {
