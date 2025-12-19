@@ -12,6 +12,21 @@ public class Chica extends EntityAnimatronic {
         super(type, level);
     }
 
+    @Override
+    protected void setupAnimationStates() {
+        if (!this.level().isDay()) {
+            idleAnimationState.stop();
+            return;
+        }
+
+        if (idleAnimationTimeout <= 0) {
+            idleAnimationTimeout = 77;
+            idleAnimationState.start(this.tickCount);
+        } else {
+            idleAnimationTimeout--;
+        }
+    }
+
     protected SoundEvent getAmbientSound() {
         return SoundsRegister.BREATH.get();
     }

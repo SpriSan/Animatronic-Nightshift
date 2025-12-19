@@ -28,6 +28,7 @@ public class CreativeTabs {
                     output.accept(ItemsRegister.FOXY_SPAWN_EGG.get());
                     output.accept(ItemsRegister.MONITOR.get());
                     output.accept(BlocksRegister.FLOOR_TILES.get());
+                    output.accept(BlocksRegister.WALL_TILES.get());
                     output.accept(BlocksRegister.CAMERA.get());
                     output.accept(BlocksRegister.CUPCAKE.get());
                     output.accept(ItemsRegister.FREDDY_MASK.get());

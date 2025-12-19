@@ -19,7 +19,10 @@ public class BlocksRegister {
     public static final DeferredRegister<Block> BLOCKS = DeferredRegister.create(ForgeRegistries.BLOCKS, AnimatronicNightshift.MODID);
 
     public static final RegistryObject<Block> FLOOR_TILES = registerBlock("floor_tiles", 
-        () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
+                () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
+
+    public static final RegistryObject<Block> WALL_TILES = registerBlock("wall_tiles",
+                () -> new Block(BlockBehaviour.Properties.copy(Blocks.STONE)));
 
     public static final RegistryObject<Block> CAMERA =
             registerBlock("security_camera",
