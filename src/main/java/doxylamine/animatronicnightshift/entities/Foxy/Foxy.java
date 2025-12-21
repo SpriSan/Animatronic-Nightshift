@@ -33,4 +33,8 @@ public class Foxy extends EntityAnimatronic {
         return 1000;
     }
 
+    public SoundEvent getJumpscareSound() {
+        return SoundsRegister.FNAF1_JUMPSCARE.get();
+    }
+
 }

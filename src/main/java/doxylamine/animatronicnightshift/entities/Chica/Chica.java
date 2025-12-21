@@ -30,5 +30,9 @@ public class Chica extends EntityAnimatronic {
     protected SoundEvent getAmbientSound() {
         return SoundsRegister.BREATH.get();
     }
+
+    public SoundEvent getJumpscareSound() {
+        return SoundsRegister.FNAF1_JUMPSCARE.get();
+    }
     
 }

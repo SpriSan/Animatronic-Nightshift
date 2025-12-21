@@ -180,6 +180,7 @@ public class ModelToyFreddy<T extends ToyFreddy> extends HierarchicalModel<T> {
     public void setupAnim(T entity, float limbSwing, float limbSwingAmount, float ageInTicks, float netHeadYaw, float headPitch) {
         this.root().getAllParts().forEach(ModelPart::resetPose);
         this.animate(((ToyFreddy) entity).crawlingAnimationState, FreddyFazbearAnimation.crawl, ageInTicks, 1f);
+        this.animate(((ToyFreddy) entity).idleAnimationState, FreddyFazbearAnimation.dance, ageInTicks, 1f);
 
 
         this.applyHeadRotation(netHeadYaw, headPitch, ageInTicks);

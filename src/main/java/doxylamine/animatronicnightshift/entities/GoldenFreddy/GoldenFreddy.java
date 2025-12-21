@@ -46,4 +46,5 @@ public class GoldenFreddy extends Monster {
         super.aiStep();
 
     }
+
 }

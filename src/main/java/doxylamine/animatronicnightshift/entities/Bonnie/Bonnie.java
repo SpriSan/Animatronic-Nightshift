@@ -6,6 +6,8 @@ import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.level.Level;
 
+import javax.annotation.Nullable;
+
 public class Bonnie extends EntityAnimatronic {
 
     public Bonnie(EntityType<? extends Bonnie> type, Level level) { super(type, level); }
@@ -27,6 +29,10 @@ public class Bonnie extends EntityAnimatronic {
 
     protected SoundEvent getAmbientSound() {
         return SoundsRegister.BREATH.get();
+    }
+
+    public SoundEvent getJumpscareSound() {
+        return SoundsRegister.FNAF1_JUMPSCARE.get();
     }
     
 }

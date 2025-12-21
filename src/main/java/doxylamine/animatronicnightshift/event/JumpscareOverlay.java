@@ -58,7 +58,7 @@ public class JumpscareOverlay {
 
         Minecraft.getInstance().getSoundManager().play(
                 SimpleSoundInstance.forUI(
-                        SoundsRegister.FNAF1_JUMPSCARE.get(),
+                        anim.getJumpscareSound(),
                         1.0F,
                         1.0F
                 )
@@ -76,13 +76,6 @@ public class JumpscareOverlay {
             this.fake = null;
         }
 
-        Minecraft.getInstance().getSoundManager().stop(
-                SimpleSoundInstance.forUI(
-                        SoundsRegister.FNAF1_JUMPSCARE.get(),
-                        1.0F,
-                        1.0F
-                )
-        );
     }
 
     @SubscribeEvent

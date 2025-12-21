@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import doxylamine.animatronicnightshift.event.JumpscareOverlay;
 import doxylamine.animatronicnightshift.items.freddymask.ItemFreddyMask;
+import doxylamine.animatronicnightshift.utils.SoundsRegister;
 import net.minecraft.client.Minecraft;
 import net.minecraft.core.BlockPos;
 import net.minecraft.sounds.SoundEvent;
@@ -22,6 +23,8 @@ import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.material.FluidState;
 import net.minecraft.world.phys.Vec3;
+
+import javax.annotation.Nullable;
 
 public class EntityAnimatronic extends Monster {
 
@@ -366,5 +369,9 @@ public class EntityAnimatronic extends Monster {
         } else if (!night && goalsEnabled) {
             disableGoals();
         }
+    }
+
+    public SoundEvent getJumpscareSound() {
+        return null;
     }
 }

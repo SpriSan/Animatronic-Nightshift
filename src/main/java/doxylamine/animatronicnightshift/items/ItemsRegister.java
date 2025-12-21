@@ -40,6 +40,9 @@ public class ItemsRegister {
         public static final RegistryObject<SpawnEggItem> FOXY_SPAWN_EGG = ITEMS.register("foxy_spawn_egg",
                 () -> new ForgeSpawnEggItem(EntitiesRegister.FOXY, 0xA1251D, 0xFF8765, new Item.Properties()));
 
+        public static final RegistryObject<SpawnEggItem> TOY_FREDDY_SPAWN_EGG = ITEMS.register("toy_freddy_spawn_egg",
+                () -> new ForgeSpawnEggItem(EntitiesRegister.TOY_FREDDY, 0xB94B27, 0xCF2323, new Item.Properties()));
+
     public static void register(IEventBus eventBus) {
         ITEMS.register(eventBus);
     }

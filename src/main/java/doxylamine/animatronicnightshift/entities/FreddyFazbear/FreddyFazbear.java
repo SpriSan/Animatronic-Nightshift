@@ -15,4 +15,8 @@ public class FreddyFazbear extends EntityAnimatronic {
         protected SoundEvent getAmbientSound() {
         return SoundsRegister.FREDDY_LAUGH.get();
     }
+
+    public SoundEvent getJumpscareSound() {
+        return SoundsRegister.FNAF1_JUMPSCARE.get();
+    }
 }
