@@ -8,6 +8,7 @@ import doxylamine.animatronicnightshift.entities.LayersRegister;
 import doxylamine.animatronicnightshift.entities.Bonnie.ModelBonnie;
 import doxylamine.animatronicnightshift.entities.Chica.ModelChica;
 import doxylamine.animatronicnightshift.entities.FreddyFazbear.ModelFreddyFazbear;
+import doxylamine.animatronicnightshift.entities.ToyFreddy.ModelToyFreddy;
 import doxylamine.animatronicnightshift.items.freddymask.ModelFreddyMask;
 import net.minecraftforge.api.distmarker.Dist;
 import net.minecraftforge.client.event.EntityRenderersEvent;
@@ -26,6 +27,7 @@ public class EventBusClientEvents {
         event.registerLayerDefinition(LayersRegister.GOLDEN_FREDDY_LAYER, ModelGoldenFreddy::createBodyLayer);
         event.registerLayerDefinition(LayersRegister.FOXY_LAYER, ModelFoxy::createBodyLayer);
         event.registerLayerDefinition(LayersRegister.FREDDY_MASK_LAYER, ModelFreddyMask::createBodyLayer);
+        event.registerLayerDefinition(LayersRegister.TOY_FREDDY_LAYER, ModelToyFreddy::createBodyLayer);
 
     }
 

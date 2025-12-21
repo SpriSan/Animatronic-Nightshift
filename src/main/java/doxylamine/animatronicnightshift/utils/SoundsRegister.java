@@ -13,6 +13,9 @@ public class SoundsRegister {
     public static final RegistryObject<SoundEvent> FNAF1_JUMPSCARE = SOUND_EVENTS.register("jumpscare1",
             () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("animatronicnightshift", "jumpscare1")));
 
+    public static final RegistryObject<SoundEvent> FNAF2_JUMPSCARE = SOUND_EVENTS.register("jumpscare2",
+            () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("animatronicnightshift", "jumpscare2")));
+
     public static final RegistryObject<SoundEvent> MASK_PUT = SOUND_EVENTS.register("mask_put",
             () -> SoundEvent.createVariableRangeEvent(new ResourceLocation("animatronicnightshift", "mask_put")));
 

@@ -6,6 +6,7 @@ import doxylamine.animatronicnightshift.entities.Chica.Chica;
 import doxylamine.animatronicnightshift.entities.Foxy.Foxy;
 import doxylamine.animatronicnightshift.entities.FreddyFazbear.FreddyFazbear;
 import doxylamine.animatronicnightshift.entities.GoldenFreddy.GoldenFreddy;
+import doxylamine.animatronicnightshift.entities.ToyFreddy.ToyFreddy;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraftforge.eventbus.api.IEventBus;
@@ -41,6 +42,11 @@ public class EntitiesRegister {
             ENTITY_TYPES.register("foxy", () -> EntityType.Builder.of(Foxy::new, MobCategory.MONSTER)
                     .sized(0.8f, 2.5f)
                     .build("foxy"));
+
+    public static final RegistryObject<EntityType<ToyFreddy>> TOY_FREDDY =
+            ENTITY_TYPES.register("toy_freddy", () -> EntityType.Builder.of(ToyFreddy::new, MobCategory.MONSTER)
+                    .sized(0.8f, 2.5f)
+                    .build("toy_freddy"));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);

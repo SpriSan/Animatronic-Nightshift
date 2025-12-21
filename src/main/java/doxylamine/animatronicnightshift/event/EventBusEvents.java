@@ -7,6 +7,7 @@ import doxylamine.animatronicnightshift.entities.Chica.Chica;
 import doxylamine.animatronicnightshift.entities.Foxy.Foxy;
 import doxylamine.animatronicnightshift.entities.FreddyFazbear.FreddyFazbear;
 import doxylamine.animatronicnightshift.entities.GoldenFreddy.GoldenFreddy;
+import doxylamine.animatronicnightshift.entities.ToyFreddy.ToyFreddy;
 import net.minecraftforge.event.entity.EntityAttributeCreationEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -20,5 +21,7 @@ public class EventBusEvents {
         event.put(EntitiesRegister.CHICA.get(), Chica.createAttributes().build());;
         event.put(EntitiesRegister.GOLDEN_FREDDY.get(), GoldenFreddy.createAttributes().build());;
         event.put(EntitiesRegister.FOXY.get(), Foxy.createAttributes().build());;
+        event.put(EntitiesRegister.TOY_FREDDY.get(), ToyFreddy.createAttributes().build());;
+
     }
 }

@@ -7,6 +7,14 @@
       ]
     },
 
+    "jumpscare2" : {
+      "category": "mob",
+      "subtitle": "sounds.animatronicnightshift.jumpscare2",
+      "sounds" : [
+        "animatronicnightshift:jumpscare2"
+      ]
+    },
+
     "mask_put" : {
       "category": "player",
       "subtitle": "sounds.animatronicnightshift.mask_put",
