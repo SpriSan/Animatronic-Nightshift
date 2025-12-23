@@ -6,6 +6,7 @@ import doxylamine.animatronicnightshift.entities.Chica.Chica;
 import doxylamine.animatronicnightshift.entities.Foxy.Foxy;
 import doxylamine.animatronicnightshift.entities.FreddyFazbear.FreddyFazbear;
 import doxylamine.animatronicnightshift.entities.GoldenFreddy.GoldenFreddy;
+import doxylamine.animatronicnightshift.entities.Springtrap.Springtrap;
 import doxylamine.animatronicnightshift.entities.ToyFreddy.ToyFreddy;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -13,6 +14,9 @@ import net.minecraftforge.eventbus.api.IEventBus;
 import net.minecraftforge.registries.DeferredRegister;
 import net.minecraftforge.registries.ForgeRegistries;
 import net.minecraftforge.registries.RegistryObject;
+
+import javax.swing.*;
+
 public class EntitiesRegister {
     public static final DeferredRegister<EntityType<?>> ENTITY_TYPES =
             DeferredRegister.create(ForgeRegistries.ENTITY_TYPES, AnimatronicNightshift.MODID);
@@ -47,6 +51,11 @@ public class EntitiesRegister {
             ENTITY_TYPES.register("toy_freddy", () -> EntityType.Builder.of(ToyFreddy::new, MobCategory.MONSTER)
                     .sized(0.8f, 2.5f)
                     .build("toy_freddy"));
+
+    public static final RegistryObject<EntityType<Springtrap>> SPRINGTRAP =
+            ENTITY_TYPES.register("springtrap", () -> EntityType.Builder.of(Springtrap::new, MobCategory.MONSTER)
+                    .sized(0.8f, 2.5f)
+                    .build("springtrap"));
 
     public static void register(IEventBus eventBus) {
         ENTITY_TYPES.register(eventBus);
