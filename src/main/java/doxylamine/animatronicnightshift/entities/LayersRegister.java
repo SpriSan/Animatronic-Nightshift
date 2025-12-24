@@ -25,6 +25,9 @@ public class LayersRegister {
     public static final ModelLayerLocation TOY_FREDDY_LAYER =
             new ModelLayerLocation(new ResourceLocation(AnimatronicNightshift.MODID, "toy_freddy"), "main");
 
+    public static final ModelLayerLocation TOY_BONNIE_LAYER =
+            new ModelLayerLocation(new ResourceLocation(AnimatronicNightshift.MODID, "toy_bonnie"), "main");
+
     public static final ModelLayerLocation FOXY_LAYER =
             new ModelLayerLocation(new ResourceLocation(AnimatronicNightshift.MODID, "foxy"), "main");
 

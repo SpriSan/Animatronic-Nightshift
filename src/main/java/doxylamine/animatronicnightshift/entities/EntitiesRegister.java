@@ -7,6 +7,7 @@ import doxylamine.animatronicnightshift.entities.Foxy.Foxy;
 import doxylamine.animatronicnightshift.entities.FreddyFazbear.FreddyFazbear;
 import doxylamine.animatronicnightshift.entities.GoldenFreddy.GoldenFreddy;
 import doxylamine.animatronicnightshift.entities.Springtrap.Springtrap;
+import doxylamine.animatronicnightshift.entities.ToyBonnie.ToyBonnie;
 import doxylamine.animatronicnightshift.entities.ToyFreddy.ToyFreddy;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
@@ -51,6 +52,11 @@ public class EntitiesRegister {
             ENTITY_TYPES.register("toy_freddy", () -> EntityType.Builder.of(ToyFreddy::new, MobCategory.MONSTER)
                     .sized(0.8f, 2.5f)
                     .build("toy_freddy"));
+
+    public static final RegistryObject<EntityType<ToyBonnie>> TOY_BONNIE =
+            ENTITY_TYPES.register("toy_bonnie", () -> EntityType.Builder.of(ToyBonnie::new, MobCategory.MONSTER)
+                    .sized(0.8f, 2.5f)
+                    .build("toy_bonnie"));
 
     public static final RegistryObject<EntityType<Springtrap>> SPRINGTRAP =
             ENTITY_TYPES.register("springtrap", () -> EntityType.Builder.of(Springtrap::new, MobCategory.MONSTER)

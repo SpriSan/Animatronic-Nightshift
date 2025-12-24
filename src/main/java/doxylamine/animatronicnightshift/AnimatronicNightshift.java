@@ -3,6 +3,7 @@ package doxylamine.animatronicnightshift;
 import doxylamine.animatronicnightshift.entities.Foxy.FoxyRenderer;
 import doxylamine.animatronicnightshift.entities.GoldenFreddy.GoldenFreddyRenderer;
 import doxylamine.animatronicnightshift.entities.Springtrap.SpringtrapRenderer;
+import doxylamine.animatronicnightshift.entities.ToyBonnie.ToyBonnieRenderer;
 import doxylamine.animatronicnightshift.entities.ToyFreddy.ToyFreddyRenderer;
 import doxylamine.animatronicnightshift.utils.CreativeTabs;
 import doxylamine.animatronicnightshift.utils.SoundsRegister;
@@ -69,6 +70,8 @@ public class AnimatronicNightshift
             EntityRenderers.register(EntitiesRegister.FOXY.get(), FoxyRenderer::new);
             EntityRenderers.register(EntitiesRegister.TOY_FREDDY.get(), ToyFreddyRenderer::new);
             EntityRenderers.register(EntitiesRegister.SPRINGTRAP.get(), SpringtrapRenderer::new);
+            EntityRenderers.register(EntitiesRegister.TOY_BONNIE.get(), ToyBonnieRenderer::new);
+
 
             event.registerBlockEntityRenderer(
                     BlockEntityRegister.CAMERA_BLOCK_ENTITY.get(),
