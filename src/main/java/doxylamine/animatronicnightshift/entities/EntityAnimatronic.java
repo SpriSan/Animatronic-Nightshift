@@ -44,7 +44,7 @@ public class EntityAnimatronic extends Monster {
 
     double attackSpeed = 1.2D;
 
-    protected boolean isNightTime() {
+    public boolean isNightTime() {
         long time = this.level().getDayTime() % 24000L;
         return time >= 15000L && time <= 23000L;
     }
