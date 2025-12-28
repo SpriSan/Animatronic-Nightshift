@@ -34,6 +34,9 @@ public class LayersRegister {
     public static final ModelLayerLocation WITHERED_FREDDY_LAYER =
             new ModelLayerLocation(new ResourceLocation(AnimatronicNightshift.MODID, "withered_freddy"), "main");
 
+    public static final ModelLayerLocation WITHERED_BONNIE_LAYER =
+            new ModelLayerLocation(new ResourceLocation(AnimatronicNightshift.MODID, "withered_bonnie"), "main");
+
     public static final ModelLayerLocation CAMERA_LAYER =
             new ModelLayerLocation(new ResourceLocation(AnimatronicNightshift.MODID, "camera"), "main");
 

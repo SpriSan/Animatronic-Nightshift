@@ -5,6 +5,7 @@ import doxylamine.animatronicnightshift.entities.GoldenFreddy.GoldenFreddyRender
 import doxylamine.animatronicnightshift.entities.Springtrap.SpringtrapRenderer;
 import doxylamine.animatronicnightshift.entities.ToyBonnie.ToyBonnieRenderer;
 import doxylamine.animatronicnightshift.entities.ToyFreddy.ToyFreddyRenderer;
+import doxylamine.animatronicnightshift.entities.WitheredBonnie.WitheredBonnieRenderer;
 import doxylamine.animatronicnightshift.entities.WitheredFreddy.WitheredFreddyRenderer;
 import doxylamine.animatronicnightshift.utils.CreativeTabs;
 import doxylamine.animatronicnightshift.utils.SoundsRegister;
@@ -73,6 +74,7 @@ public class AnimatronicNightshift
             EntityRenderers.register(EntitiesRegister.SPRINGTRAP.get(), SpringtrapRenderer::new);
             EntityRenderers.register(EntitiesRegister.TOY_BONNIE.get(), ToyBonnieRenderer::new);
             EntityRenderers.register(EntitiesRegister.WITHERED_FREDDY.get(), WitheredFreddyRenderer::new);
+            EntityRenderers.register(EntitiesRegister.WITHERED_BONNIE.get(), WitheredBonnieRenderer::new);
 
 
             event.registerBlockEntityRenderer(

@@ -1,4 +1,4 @@
-package doxylamine.animatronicnightshift.entities.WitheredFreddy;
+package doxylamine.animatronicnightshift.entities.WitheredBonnie;
 
 import com.mojang.blaze3d.vertex.PoseStack;
 import doxylamine.animatronicnightshift.AnimatronicNightshift;
@@ -12,18 +12,18 @@ import net.minecraft.client.renderer.entity.MobRenderer;
 import net.minecraft.resources.ResourceLocation;
 import net.minecraft.world.level.Level;
 
-public class WitheredFreddyRenderer extends MobRenderer<WitheredFreddy, ModelWitheredFreddy<WitheredFreddy>> {
-    public WitheredFreddyRenderer(EntityRendererProvider.Context pContext) {
-        super(pContext, new ModelWitheredFreddy<>(pContext.bakeLayer(LayersRegister.WITHERED_FREDDY_LAYER)), 0.5f);
+public class WitheredBonnieRenderer extends MobRenderer<WitheredBonnie, ModelWitheredBonnie<WitheredBonnie>> {
+    public WitheredBonnieRenderer(EntityRendererProvider.Context pContext) {
+        super(pContext, new ModelWitheredBonnie<>(pContext.bakeLayer(LayersRegister.WITHERED_BONNIE_LAYER)), 0.5f);
     }
 
     @Override
-    public ResourceLocation getTextureLocation(WitheredFreddy pEntity) {
-        return new ResourceLocation(AnimatronicNightshift.MODID, "textures/entity/witheredfreddy.png");
+    public ResourceLocation getTextureLocation(WitheredBonnie pEntity) {
+        return new ResourceLocation(AnimatronicNightshift.MODID, "textures/entity/witheredbonnie.png");
     }
 
     @Override
-    public void render(WitheredFreddy pEntity, float pEntityYaw, float pPartialTicks, PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight) {
+    public void render(WitheredBonnie pEntity, float pEntityYaw, float pPartialTicks, PoseStack pMatrixStack, MultiBufferSource pBuffer, int pPackedLight) {
         pMatrixStack.pushPose(); // Sauvegarde l'état actuel
 
         float scale = 0.85f; // Valeur de scale, 2.0 = deux fois plus grand
@@ -46,19 +46,9 @@ public class WitheredFreddyRenderer extends MobRenderer<WitheredFreddy, ModelWit
             pMatrixStack.translate(0.0D, -1D, 0D);
         }
 
-        if (!pEntity.isNightTime()) {
-
-            pMatrixStack.translate(0.0D, 0.251D, 0.0D);
-
-            pMatrixStack.mulPose(com.mojang.math.Axis.YP.rotationDegrees(-pEntityYaw));
-
-            pMatrixStack.mulPose(com.mojang.math.Axis.XP.rotationDegrees(-90.0F));
-
-            pMatrixStack.mulPose(com.mojang.math.Axis.YP.rotationDegrees(pEntityYaw));
-
-            pMatrixStack.translate(0.0D, -1.5D, 0D);
+        if(!pEntity.isNightTime()) {
+            pMatrixStack.translate(0.0D, -1.2D, 0.0D);
         }
-
 
         super.render(pEntity, pEntityYaw, pPartialTicks, pMatrixStack, pBuffer, pPackedLight);
 
