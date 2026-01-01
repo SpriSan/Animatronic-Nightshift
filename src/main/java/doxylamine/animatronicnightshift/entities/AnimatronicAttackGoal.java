@@ -10,6 +10,7 @@ import net.minecraft.world.entity.ai.goal.Goal;
 import net.minecraft.world.entity.player.Player;
 import net.minecraft.world.level.pathfinder.Node;
 import net.minecraft.world.level.pathfinder.Path;
+import net.minecraft.world.phys.Vec3;
 
 public class AnimatronicAttackGoal extends Goal {
     protected final EntityAnimatronic mob;
@@ -46,7 +47,10 @@ public class AnimatronicAttackGoal extends Goal {
             } else if (!livingentity.isAlive()) {
                 return false;
             } else if (livingentity instanceof Player player && ItemFreddyMask.isPlayerUsingMask(player)) {
-                // Ne pas attaquer si le joueur porte le masque
+                return false;
+            } else if (!isInFieldOfView(livingentity)) {
+                return false;
+            } else if (!this.mob.getSensing().hasLineOfSight(livingentity)) {
                 return false;
             } else {
                 if (canPenalize) {
@@ -75,7 +79,8 @@ public class AnimatronicAttackGoal extends Goal {
         } else if (!livingentity.isAlive()) {
             return false;
         } else if (livingentity instanceof Player player && ItemFreddyMask.isPlayerUsingMask(player) && mob.isMaskVulnerable()) {
-            // Arrêter de poursuivre si le joueur met le masque
+            return false;
+        } else if (!isInFieldOfView(livingentity)) {
             return false;
         } else if (!this.followingTargetEvenIfNotSeen) {
             return !this.mob.getNavigation().isDone();
@@ -189,5 +194,21 @@ public class AnimatronicAttackGoal extends Goal {
 
     protected double getAttackReachSqr(LivingEntity p_25556_) {
         return (double)(this.mob.getBbWidth() * 1F * this.mob.getBbWidth() * 1F + p_25556_.getBbWidth());
+    }
+
+
+    private boolean isInFieldOfView(LivingEntity target) {
+        Vec3 mobLook = this.mob.getViewVector(1.0F).normalize();
+        Vec3 toTarget = new Vec3(
+                target.getX() - this.mob.getX(),
+                target.getEyeY() - this.mob.getEyeY(),
+                target.getZ() - this.mob.getZ()
+        ).normalize();
+
+        double dotProduct = mobLook.dot(toTarget);
+
+        double angleThreshold = Math.cos(Math.toRadians(90));
+
+        return dotProduct >= angleThreshold;
     }
 }
