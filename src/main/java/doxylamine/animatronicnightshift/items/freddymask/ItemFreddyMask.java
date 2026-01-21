@@ -5,6 +5,7 @@ import doxylamine.animatronicnightshift.utils.SoundsRegister;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.resources.sounds.SimpleSoundInstance;
 import net.minecraft.network.chat.Component;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.InteractionHand;
 import net.minecraft.world.InteractionResultHolder;
 import net.minecraft.world.entity.player.Player;
@@ -17,6 +18,10 @@ import javax.annotation.Nullable;
 import java.util.List;
 
 public class ItemFreddyMask extends Item {
+
+    private static final SoundEvent MASK_PUT = SoundsRegister.MASK_PUT.get();
+    private static final SoundEvent MASK_REMOVE= SoundsRegister.MASK_REMOVE.get();
+
 
     public ItemFreddyMask(Properties properties) {
         super(properties);
@@ -34,7 +39,7 @@ public class ItemFreddyMask extends Item {
 
         Minecraft.getInstance().getSoundManager().play(
                 SimpleSoundInstance.forUI(
-                        SoundsRegister.MASK_PUT.get(),
+                        MASK_PUT,
                         1.0F,
                         1.0F
                 )
@@ -48,7 +53,7 @@ public class ItemFreddyMask extends Item {
 
         Minecraft.getInstance().getSoundManager().play(         //peut causer des crash
                 SimpleSoundInstance.forUI(
-                        SoundsRegister.MASK_REMOVE.get(),
+                        MASK_REMOVE,
                         1.0F,
                         1.0F
                 )
