@@ -27,6 +27,9 @@ public class CreativeTabs {
                     output.accept(ItemsRegister.FOXY_SPAWN_EGG.get());
                     output.accept(ItemsRegister.GOLDEN_FREDDY_SPAWN_EGG.get());
                     output.accept(ItemsRegister.TOY_FREDDY_SPAWN_EGG.get());
+                    output.accept(ItemsRegister.TOY_BONNIE_SPAWN_EGG.get());
+                    output.accept(ItemsRegister.WITHERED_FREDDY_SPAWN_EGG.get());
+                    output.accept(ItemsRegister.WITHERED_BONNIE_SPAWN_EGG.get());
                     output.accept(ItemsRegister.MONITOR.get());
                     output.accept(BlocksRegister.FLOOR_TILES.get());
                     output.accept(BlocksRegister.WALL_TILES.get());
